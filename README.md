@@ -11,7 +11,7 @@
 
 - 👨‍💻 All of my projects are available at [https://github.com/Sriram-52](https://github.com/Sriram-52)
 
-- 💬 Ask me about **react, react-native, flutter**
+- 💬 Ask me about **React, React-Native, Flutter, Angular2+, Node.Js, Firebase**
 
 - 📫 How to reach me **nyshadhamramu@gmail.com**
 

@@ -20,7 +20,7 @@
 <a href="https://twitter.com/52Sriram" target="blank"><img align="center" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/twitter.svg" alt="52Sriram" height="30" width="40" /></a>
 <a href="https://www.linkedin.com/in/sriram-nyshadham-913252194/" target="blank"><img align="center" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/linkedin.svg" alt="sriram nyshadham" height="30" width="40" /></a>
 <a href="https://www.facebook.com/sriram.mohan.73550/" target="blank"><img align="center" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/facebook.svg" alt="sriram nyshadham" height="30" width="40" /></a>
-<a href="https://instagram.com/name_is_nobitha" target="blank"><img align="center" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/instagram.svg" alt="name_is_nobitha" height="30" width="40" /></a>
+<a href="https://instagram.com/sriram_nyshadham" target="blank"><img align="center" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/instagram.svg" alt="name_is_nobitha" height="30" width="40" /></a>
 <a href="https://www.hackerrank.com/sriram_52" target="blank"><img align="center" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/hackerrank.svg" alt="sriram_52" height="30" width="40" /></a>
 </p>
 

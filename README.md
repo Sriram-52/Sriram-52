@@ -38,6 +38,6 @@
   <a href="https://git-scm.com/" target="_blank"> <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="40" height="40"/> </a>
 </p>
 
-<p><img align="left" src="https://github-readme-streak-stats.herokuapp.com/?user=sriram-52&" alt="sriram-52" /></p>
-
-<p>&nbsp;<img align="left" src="https://github-readme-stats.vercel.app/api?username=sriram-52&show_icons=true&locale=en" alt="sriram-52" /></p>
+<div><img align="left" src="https://github-readme-streak-stats.herokuapp.com/?user=sriram-52&" alt="sriram-52" /></div>
+<br />
+<div>&nbsp;<img align="left" src="https://github-readme-stats.vercel.app/api?username=sriram-52&show_icons=true&locale=en" alt="sriram-52" /></div>

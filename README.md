@@ -1,4 +1,4 @@
-<h1 align="center">Hi 👋, I'm Sriram</h1>
+<h1 align="center">Hi 👋, I'm Sriram Nyshadham</h1>
 <h3 align="center">Senior Mobile & Full Stack Developer with a passion for creating impactful solutions</h3>
 
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=sriram-52&label=Profile%20views&color=0e75b6&style=flat" alt="sriram-52" /> </p>
@@ -7,7 +7,7 @@
 
 <p align="left"> <a href="https://twitter.com/52Sriram" target="blank"><img src="https://img.shields.io/twitter/follow/52Sriram?logo=twitter&style=for-the-badge" alt="52Sriram" /></a> </p>
 
-- 🔭 I’m currently working on cutting-edge mobile and web projects, including [Flair](https://workforce.flairtechno.com/), leveraging technologies like React Native, TypeScript, and Nest.js.
+- 🔭 I’m currently working on cutting-edge mobile and web projects, leveraging technologies like React Native, TypeScript, and Nest.js.
 
 - 👨‍💻 My portfolio showcases a variety of full stack and mobile applications I've built. Check them out here: [https://github.com/Sriram-52](https://github.com/Sriram-52)
 

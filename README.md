@@ -38,7 +38,7 @@
   <a href="https://git-scm.com/" target="_blank"> <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="40" height="40"/> </a>
 </p>
 
-<div align="center">
+<div align="left">
   <img src="https://github-readme-streak-stats.herokuapp.com/?user=sriram-52&" alt="sriram-52" style="height: 200px;"/>
   <img src="https://github-readme-stats.vercel.app/api?username=sriram-52&show_icons=true&locale=en" alt="sriram-52" style="height: 200px;"/>
 </div>

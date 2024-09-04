@@ -5,7 +5,7 @@
 
 <p align="left"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=sriram-52" alt="sriram-52" /></a> </p>
 
-<p align="left"> <a href="https://twitter.com/52Sriram" target="blank"><img src="https://img.shields.io/twitter/follow/52Sriram?logo=twitter&style=for-the-badge" alt="52Sriram" /></a> </p>
+<p align="left"> <a href="https://twitter.com/52Sriram" target="blank"><img src="https://img.shields.io/twitter/follow/52Sriram?logo=twitter&style=for-the-badge&color=1DA1F2" alt="52Sriram" /></a> </p>
 
 - 🔭 I’m currently working on cutting-edge mobile and web projects, leveraging technologies like React Native, TypeScript, and Nest.js.
 
@@ -19,11 +19,9 @@
 
 <h3 align="left">Connect with me:</h3>
 <p align="left">
-<a href="https://twitter.com/52Sriram" target="blank"><img align="center" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/twitter.svg" alt="52Sriram" height="30" width="40" /></a>
-<a href="https://www.linkedin.com/in/sriram-nyshadham-913252194/" target="blank"><img align="center" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/linkedin.svg" alt="sriram nyshadham" height="30" width="40" /></a>
-<a href="https://www.facebook.com/sriram.mohan.73550/" target="blank"><img align="center" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/facebook.svg" alt="sriram nyshadham" height="30" width="40" /></a>
-<a href="https://instagram.com/sriram_nyshadham" target="blank"><img align="center" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/instagram.svg" alt="name_is_nobitha" height="30" width="40" /></a>
-<a href="https://www.hackerrank.com/sriram_52" target="blank"><img align="center" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/hackerrank.svg" alt="sriram_52" height="30" width="40" /></a>
+  <a href="https://twitter.com/52Sriram" target="blank"><img align="center" src="https://img.shields.io/badge/Twitter-1DA1F2?logo=twitter&logoColor=white&style=for-the-badge" alt="52Sriram" height="30" width="100" /></a>
+  <a href="https://www.linkedin.com/in/sriram-nyshadham-913252194/" target="blank"><img align="center" src="https://img.shields.io/badge/LinkedIn-0077B5?logo=linkedin&logoColor=white&style=for-the-badge" alt="sriram nyshadham" height="30" width="100" /></a>
+  <a href="https://www.hackerrank.com/sriram_52" target="blank"><img align="center" src="https://img.shields.io/badge/Hackerrank-2EC866?logo=hackerrank&logoColor=white&style=for-the-badge" alt="sriram_52" height="30" width="100" /></a>
 </p>
 
 <h3 align="left">Languages and Tools:</h3>
@@ -42,5 +40,4 @@
 
 <p><img align="left" src="https://github-readme-streak-stats.herokuapp.com/?user=sriram-52&" alt="sriram-52" /></p>
 
-<p>&nbsp;<img align="center" src="https://github-readme-stats.vercel.app/api?username=sriram-52&show_icons=true&locale=en" alt="sriram-52" /></p>
-
+<p>&nbsp;<img align="left" src="https://github-readme-stats.vercel.app/api?username=sriram-52&show_icons=true&locale=en" alt="sriram-52" /></p>

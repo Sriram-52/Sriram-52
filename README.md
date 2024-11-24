@@ -20,7 +20,7 @@
 <h3 align="left">Connect with me:</h3>
 <p align="left">
   <a href="https://twitter.com/52Sriram" target="blank"><img align="center" src="https://img.shields.io/badge/Twitter-1DA1F2?logo=twitter&logoColor=white&style=for-the-badge" alt="52Sriram" height="30" width="100" /></a>
-  <a href="https://www.linkedin.com/in/sriram-nyshadham-913252194/" target="blank"><img align="center" src="https://img.shields.io/badge/LinkedIn-0077B5?logo=linkedin&logoColor=white&style=for-the-badge" alt="sriram nyshadham" height="30" width="100" /></a>
+  <a href="https://www.linkedin.com/in/sriram-nyshadham/" target="blank"><img align="center" src="https://img.shields.io/badge/LinkedIn-0077B5?logo=linkedin&logoColor=white&style=for-the-badge" alt="sriram nyshadham" height="30" width="100" /></a>
   <a href="https://www.hackerrank.com/sriram_52" target="blank"><img align="center" src="https://img.shields.io/badge/Hackerrank-2EC866?logo=hackerrank&logoColor=white&style=for-the-badge" alt="sriram_52" height="30" width="100" /></a>
 </p>
 

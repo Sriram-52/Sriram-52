@@ -1,5 +1,5 @@
 <h1 align="center">Hi 👋, I'm Sriram Nyshadham</h1>
-<h3 align="center">Senior Mobile & Full Stack Developer with a passion for creating impactful solutions</h3>
+<h3 align="center">Full Stack Developer with a passion for creating impactful solutions</h3>
 
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=sriram-52&label=Profile%20views&color=0e75b6&style=flat" alt="sriram-52" /> </p>
 

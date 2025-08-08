@@ -102,10 +102,16 @@ export default function Page() {
           <div className="relative grid gap-6 md:grid-cols-[1.5fr_1fr] items-start animate-enter">
             <div>
               <h1 className="font-display text-3xl md:text-5xl font-extrabold tracking-tight leading-tight">
-                Sri Ram Mohan Nyshadham — Senior Mobile & Full‑Stack Developer
+                Sri Ram Mohan Nyshadham —
+              </h1>
+              <h1 className="font-display text-3xl md:text-5xl font-extrabold tracking-tight leading-tight">
+                Senior Full Stack Developer
+              </h1>
+              <h1 className="font-display text-3xl md:text-5xl font-extrabold tracking-tight leading-tight">
+                (Web & Mobile)
               </h1>
               <p className="mt-4 text-muted-foreground text-lg max-w-2xl">
-                Full Stack & Mobile Developer | React, Next.js, NestJS, GCP
+                React, Next.js, React Native, Flutter, Node.js, NestJS, GCP
               </p>
               <div className="mt-4 flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
                 <span className="inline-flex items-center gap-1">
@@ -148,23 +154,23 @@ export default function Page() {
               <CardHeader>
                 <CardTitle>About Me</CardTitle>
                 <CardDescription>
-                  Impact‑driven engineer focused on clarity, performance, and
+                  Impact-driven engineer focused on clarity, performance, and
                   security.
                 </CardDescription>
               </CardHeader>
               <CardContent className="text-sm leading-relaxed space-y-3">
                 <p>
-                  Senior Mobile & Full Stack Developer with 5+ years of
-                  experience delivering scalable, secure, and high‑performance
+                  Senior Full Stack Developer (Web & Mobile) with 5+ years of
+                  experience delivering scalable, secure, and high-performance
                   applications across web and mobile. Deep expertise in React,
                   React Native, Next.js, NestJS, Prisma, ZenStack, and GCP
                   serverless architecture.
                 </p>
                 <p>
                   I bring proactive learning, attention to detail, and a strong
-                  product mindset—consistently shipping cost‑optimized
+                  product mindset-consistently shipping cost-optimized
                   solutions. Experienced in healthcare technology, AI
-                  integration, and HIPAA‑compliant systems.
+                  integration, and HIPAA-compliant systems.
                 </p>
               </CardContent>
             </Card>
@@ -209,7 +215,7 @@ export default function Page() {
                 <CardTitle>
                   Atelia Software Inc.{" "}
                   <span className="text-muted-foreground font-normal">
-                    — Jun 2021 – Present
+                    — Jun 2021 - Present
                   </span>
                 </CardTitle>
                 <CardDescription>
@@ -220,11 +226,11 @@ export default function Page() {
               <CardContent className="space-y-2 text-sm">
                 <ul className="list-disc pl-5 space-y-2">
                   <li>Nest.js monorepo with Prisma & ZenStack RBAC/ABAC.</li>
-                  <li>Orval + OpenAPI for auto‑generated React Query hooks.</li>
-                  <li>Twilio concurrency control + real‑time conversations.</li>
+                  <li>Orval + OpenAPI for auto-generated React Query hooks.</li>
+                  <li>Twilio concurrency control + real-time conversations.</li>
                   <li>Slack webhooks integration.</li>
                   <li>
-                    SEO‑optimized Next.js landing pages (+15% performance).
+                    SEO-optimized Next.js landing pages (+15% performance).
                   </li>
                   <li>Migration from Flutter to React Native + BLE SDK.</li>
                   <li>Cloud Run migration reducing infra cost by 50%.</li>
@@ -238,11 +244,11 @@ export default function Page() {
                 <CardTitle>
                   Eficens Systems LLC{" "}
                   <span className="text-muted-foreground font-normal">
-                    — Mar 2020 – May 2021
+                    — Mar 2020 - May 2021
                   </span>
                 </CardTitle>
                 <CardDescription>
-                  Full‑stack development for a responsive web platform.
+                  Full-stack development for a responsive web platform.
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-2 text-sm">
@@ -363,7 +369,7 @@ export default function Page() {
               <CardHeader>
                 <CardTitle>Get in touch</CardTitle>
                 <CardDescription>
-                  Send a quick message and I'll get back soon.
+                  Send a quick message and I&apos;ll get back soon.
                 </CardDescription>
               </CardHeader>
               <CardContent>

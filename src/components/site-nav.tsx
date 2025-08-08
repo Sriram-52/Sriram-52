@@ -41,7 +41,7 @@ export function SiteNav({
         const rectTop = el.getBoundingClientRect().top + window.scrollY
         // Account for CSS scroll-margin-top so anchor jumps align correctly
         const smt = parseFloat(
-          (getComputedStyle(el).scrollMarginTop || "0").toString()
+          (getComputedStyle(el).scrollMarginTop || "0").toString(),
         )
         return {
           id: el.id,
@@ -100,7 +100,7 @@ export function SiteNav({
             className={cn(
               "relative transition-colors text-muted-foreground hover:text-primary",
               "after:absolute after:-bottom-2 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-[width] after:duration-300",
-              isActive && "text-primary font-semibold after:w-full"
+              isActive && "text-primary font-semibold after:w-full",
             )}
             onClick={() => {
               // Allow default anchor navigation, but schedule a read after scroll completes

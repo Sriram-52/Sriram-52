@@ -4,7 +4,7 @@ import {
   Linkedin,
   Mail,
   Download,
-  ExternalLink,
+  // ExternalLink,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "@/components/ui/theme-toggle"
@@ -28,48 +28,145 @@ const skills = {
     "Next.js",
     "TypeScript",
     "TailwindCSS",
+    "Vue.js",
     "Material-UI",
-    "Vite",
+    "shadcn/ui",
   ],
-  Backend: ["NestJS", "Prisma", "ZenStack", "Node.js", "REST APIs", "GraphQL"],
-  "Mobile Development": ["React Native", "Flutter", "BLE SDKs"],
-  "DevOps & Cloud": [
-    "GCP (Cloud Run, Cloud Storage)",
-    "GitHub Actions",
-    "CI/CD",
-    "Docker",
+  Backend: [
+    "NestJS",
+    "Spring Boot",
+    "Node.js",
+    "Prisma",
+    "REST APIs",
+    "GraphQL",
+    "Express.js",
   ],
-  "Other Tools": [
-    "Twilio",
-    "Slack APIs",
+  "Mobile Development": [
+    "React Native",
+    "Flutter",
+    "Android (Java)",
+    "Dart",
+    "BLE SDKs",
+  ],
+  Languages: ["TypeScript", "JavaScript", "Java", "Python", "Dart", "C#"],
+  "Database & Cloud": [
+    "PostgreSQL",
     "Firebase",
-    "Orval",
-    "OpenAPI",
-    "Recharts",
+    "GCP",
+    "MongoDB",
+    "Prisma ORM",
+    "HIPAA Compliance",
+  ],
+  "Healthcare & Enterprise": [
+    "EMR Systems",
+    "HIPAA Compliance",
+    "Enterprise RBAC/ABAC",
+    "Medical Device Integration",
+    "FHIR Standards",
+    "Microservices Architecture",
+  ],
+  "AI & Security": [
+    "OpenAI API",
+    "LangChain",
+    "LangGraph",
+    "AI Agents",
+    "Computer Vision",
+    "RSA Encryption",
+    "Machine Learning",
+    "RBAC Systems",
+  ],
+  "DevOps & CI/CD": [
+    "GitHub Actions",
+    "Docker",
+    "Turborepo",
+    "Nx Monorepo",
+    "React Native CI",
+    "Mobile App Deployment",
+    "Automated Testing",
   ],
 }
 
 const projects = [
   {
-    title: "Healthcare Automation Platform",
+    title: "Secure Chat Application",
     blurb:
-      "Workflow automation with secure data flows; integrations for messaging and scheduling.",
-    stack: ["React", "NestJS", "Prisma", "GCP"],
-    links: { demo: "#", code: "#" },
+      "React application with RSA encryption for secure real-time messaging. User-friendly interface with strong security features to protect user communications.",
+    stack: ["React", "TypeScript", "RSA Encryption", "Real-time"],
+    links: {
+      code: "https://github.com/Sriram-52/secure-chat",
+    },
   },
   {
-    title: "RAG-based Physician Documentation",
+    title: "NestJS React RBAC System",
     blurb:
-      "Retrieval-augmented generation for clinical notes; improves accuracy and reduces time.",
-    stack: ["OpenAI", "LangChain", "LangGraph"],
-    links: { demo: "#", code: "#" },
+      "Enterprise RBAC system built with NestJS backend and React frontend. Features microservices architecture, and scalable deployment.",
+    stack: ["NestJS", "React", "TypeScript"],
+    links: {
+      code: "https://github.com/Sriram-52/nest-react-rbac",
+    },
   },
   {
-    title: "Internal iHealth SDK",
+    title: "Spring Boot Quiz Platform",
     blurb:
-      "BLE device integrations and data synchronization across mobile and backend.",
-    stack: ["React Native", "BLE", "iHealth"],
-    links: { demo: "#", code: "#" },
+      "Educational quiz platform with microservices architecture. Features containerized deployment, and scalable backend services.",
+    stack: ["Spring Boot", "Java", "PostgreSQL", "Docker"],
+    links: {
+      code: "https://github.com/Sriram-52/quiz-app-spring-boot",
+    },
+  },
+  {
+    title: "OpenAI Integration Starter",
+    blurb:
+      "TypeScript application showcasing OpenAI API integration. Features modular architecture for AI-powered applications.",
+    stack: ["TypeScript", "OpenAI API", "Node.js", "AI"],
+    links: {
+      code: "https://github.com/Sriram-52/openai-starter",
+    },
+  },
+  {
+    title: "Flutter Redux Todo App",
+    blurb:
+      "Cross-platform mobile todo application built with Flutter and Redux. Demonstrates state management and mobile UI/UX best practices.",
+    stack: ["Flutter", "Dart", "Redux", "Mobile"],
+    links: {
+      code: "https://github.com/Sriram-52/Flutter_todo_list",
+    },
+  },
+  {
+    title: "Cotton Disease Detection ML",
+    blurb:
+      "Machine learning model for cotton leaf disease detection using computer vision. Implements image classification with high accuracy for agricultural applications.",
+    stack: ["Python", "Jupyter", "Computer Vision", "ML"],
+    links: {
+      code: "https://github.com/Sriram-52/cotton-leaf-disease-detection",
+    },
+  },
+  {
+    title: "Instant Connect Mobile",
+    blurb:
+      "Mobile application that helps people connect with other users instantly. Built with TypeScript for cross-platform compatibility and real-time features.",
+    stack: ["TypeScript", "Mobile", "Real-time", "Networking"],
+    links: {
+      code: "https://github.com/Sriram-52/instant-connect",
+    },
+  },
+  {
+    title: "SMS Listener Android",
+    blurb:
+      "Android application for SMS message handling and processing. Demonstrates mobile development with Java and Android SDK integration.",
+    stack: ["Java", "Android", "SMS API", "Mobile"],
+    links: {
+      code: "https://github.com/Sriram-52/sms-listener",
+    },
+  },
+  {
+    title: "Portfolio Website",
+    blurb:
+      "Modern portfolio built with Next.js 15 and TypeScript. Features automated deployment with dark mode, animations, and optimized performance.",
+    stack: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel"],
+    links: {
+      code: "https://github.com/Sriram-52/Sriram-52",
+    },
   },
 ]
 
@@ -118,7 +215,8 @@ export default function Page() {
                 (Web & Mobile)
               </h1>
               <p className="mt-4 text-muted-foreground text-lg max-w-2xl">
-                React, Next.js, React Native, Flutter, Node.js, NestJS, GCP
+                TypeScript • React • Next.js • React Native • NestJS • Node.js •
+                AI Integration • CI/CD • GCP
               </p>
               <div className="mt-4 flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
                 <span className="inline-flex items-center gap-1">
@@ -170,17 +268,19 @@ export default function Page() {
               </CardHeader>
               <CardContent className="text-sm leading-relaxed space-y-3">
                 <p>
-                  Senior Full Stack Developer (Web & Mobile) with 5+ years of
-                  experience delivering scalable, secure, and high-performance
-                  applications across web and mobile. Deep expertise in React,
-                  React Native, Next.js, NestJS, Prisma, ZenStack, and GCP
-                  serverless architecture.
+                  Senior Full Stack Developer with 5+ years of experience
+                  building scalable web and mobile applications. Expert in
+                  modern TypeScript ecosystems including React, Next.js, NestJS,
+                  and Spring Boot. Proven track record in healthcare technology,
+                  AI integration, and enterprise security systems.
                 </p>
                 <p>
-                  I bring proactive learning, attention to detail, and a strong
-                  product mindset-consistently shipping cost-optimized
-                  solutions. Experienced in healthcare technology, AI
-                  integration, and HIPAA-compliant systems.
+                  Passionate about clean architecture, performance optimization,
+                  and security-first development. Successfully delivered 50+
+                  projects ranging from ML-powered applications to real-time
+                  chat systems with RSA encryption. Strong expertise in cloud
+                  platforms, mobile development (React Native, Flutter,
+                  Android), and modern DevOps practices.
                 </p>
               </CardContent>
             </Card>
@@ -235,22 +335,46 @@ export default function Page() {
                   </span>
                 </CardTitle>
                 <CardDescription>
-                  Senior Developer driving platform architecture, performance,
-                  and reliability.
+                  Senior Full Stack Developer - Healthcare Technology Platform
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-2 text-sm">
                 <ul className="list-disc pl-5 space-y-2">
-                  <li>Nest.js monorepo with Prisma & ZenStack RBAC/ABAC.</li>
-                  <li>Orval + OpenAPI for auto-generated React Query hooks.</li>
-                  <li>Twilio concurrency control + real-time conversations.</li>
-                  <li>Slack webhooks integration.</li>
                   <li>
-                    SEO-optimized Next.js landing pages (+15% performance).
+                    <strong>Technical Leadership & Migration:</strong> Led
+                    critical Flutter to React Native migration team, overseeing
+                    mobile architecture redesign for patient and provider
+                    applications across healthcare platform.
                   </li>
-                  <li>Migration from Flutter to React Native + BLE SDK.</li>
-                  <li>Cloud Run migration reducing infra cost by 50%.</li>
-                  <li>CI/CD optimizations with GitHub Actions.</li>
+                  <li>
+                    <strong>Microservices Architecture:</strong> Built and
+                    maintained 20+ TypeScript microservices including EMR
+                    integration, patient flow management, claims processing, and
+                    IVR systems.
+                  </li>
+                  <li>
+                    <strong>CI/CD & DevOps Excellence:</strong> Architected
+                    comprehensive GitHub Actions workflows, Docker
+                    containerization, release automation, and monitoring systems
+                    reducing deployment time by 60%.
+                  </li>
+                  <li>
+                    <strong>AI Agent Development:</strong> Built intelligent
+                    healthcare chatbots using LangGraph for clinical
+                    documentation, patient interaction, and administrative
+                    workflows.
+                  </li>
+                  <li>
+                    <strong>Enterprise Security & Compliance:</strong>{" "}
+                    Implemented CASL for RBAC/ABAC authorization, ZenStack for
+                    multi-tenancy, Temporal workflow orchestration, and
+                    HIPAA-compliant data processing across healthcare platform.
+                  </li>
+                  <li>
+                    <strong>Performance Optimization:</strong> Orchestrated
+                    Cloud Run migration, dependency management (TypeScript, pnpm
+                    and turborepo), reducing infrastructure costs by 50%.
+                  </li>
                 </ul>
               </CardContent>
             </Card>
@@ -263,15 +387,37 @@ export default function Page() {
                     — Mar 2020 - May 2021
                   </span>
                 </CardTitle>
-                <CardDescription>
-                  Full-stack development for a responsive web platform.
-                </CardDescription>
+                <CardDescription>Full Stack Developer</CardDescription>
               </CardHeader>
               <CardContent className="space-y-2 text-sm">
                 <ul className="list-disc pl-5 space-y-2">
-                  <li>Firebase serverless backend with scalable data model.</li>
-                  <li>Responsive React application with Firebase Auth.</li>
-                  <li>Deployment and performance optimizations.</li>
+                  <li>
+                    <strong>Internal Management Platform:</strong> Built
+                    comprehensive system for timesheet tracking, payroll
+                    processing, and employee management serving 100+ consultants
+                    across multiple client projects.
+                  </li>
+                  <li>
+                    <strong>Project & Resource Management:</strong> Developed
+                    allocation system with placement tracking, automated
+                    workflow processes, and real-time project status monitoring.
+                  </li>
+                  <li>
+                    <strong>Enterprise Dashboard & Analytics:</strong>{" "}
+                    Implemented role-based access control, reporting dashboard
+                    with AG Grid data visualization, and Chart.js/ApexCharts
+                    analytics for HR operations.
+                  </li>
+                  <li>
+                    <strong>Automated Payroll Processing:</strong> Created
+                    calculation system with integration to timesheet data,
+                    approval workflows, and PDF generation for payroll reports.
+                  </li>
+                  <li>
+                    <strong>Full-Stack Architecture:</strong> Built with React,
+                    Redux, Firebase backend, Material-UI components, and
+                    comprehensive data management with export capabilities.
+                  </li>
                 </ul>
               </CardContent>
             </Card>
@@ -306,18 +452,22 @@ export default function Page() {
                       </Badge>
                     ))}
                   </div>
-                  {/* <div className="flex items-center gap-2">
-                    <Button asChild variant="outline" size="sm">
-                      <a href={p.links.demo} target="_blank" rel="noreferrer">
-                        <ExternalLink className="mr-2 h-4 w-4" /> Demo
-                      </a>
-                    </Button>
-                    <Button asChild variant="ghost" size="sm">
-                      <a href={p.links.code} target="_blank" rel="noreferrer">
-                        <Github className="mr-2 h-4 w-4" /> Code
-                      </a>
-                    </Button>
-                  </div> */}
+                  <div className="flex items-center gap-2">
+                    {/* {p.links.demo && (
+                      <Button asChild variant="outline" size="sm">
+                        <a href={p.links.demo} target="_blank" rel="noreferrer">
+                          <ExternalLink className="mr-2 h-4 w-4" /> Demo
+                        </a>
+                      </Button>
+                    )} */}
+                    {p.links.code && (
+                      <Button asChild variant="ghost" size="sm">
+                        <a href={p.links.code} target="_blank" rel="noreferrer">
+                          <Github className="mr-2 h-4 w-4" /> Code
+                        </a>
+                      </Button>
+                    )}
+                  </div>
                 </CardContent>
               </Card>
             ))}
@@ -366,7 +516,7 @@ export default function Page() {
           <h2 className="font-display text-2xl md:text-3xl font-bold mb-6">
             Certifications & Awards
           </h2>
-          <div className="grid gap-6 md:grid-cols-2">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             <Card>
               <CardHeader>
                 <CardTitle>HackerRank Certificates</CardTitle>
@@ -377,6 +527,14 @@ export default function Page() {
               <CardHeader>
                 <CardTitle>IEEE Xtreme Competition</CardTitle>
                 <CardDescription>All India Rank 62</CardDescription>
+              </CardHeader>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle>Open Source Contributions</CardTitle>
+                <CardDescription>
+                  50+ GitHub repositories, TypeScript & Java expertise
+                </CardDescription>
               </CardHeader>
             </Card>
           </div>

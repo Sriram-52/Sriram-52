@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import "./global.css"
-import { Toaster } from "@/components/ui/toaster"
-import { Toaster as Sonner } from "@/components/ui/sonner"
+import { Toaster } from "@/components/ui/sonner"
 import { Providers } from "@/components/providers"
 
 export const metadata: Metadata = {
@@ -59,7 +58,6 @@ export default function RootLayout({
       <body className="bg-background text-foreground">
         <Providers>
           <Toaster />
-          <Sonner />
           {children}
         </Providers>
       </body>

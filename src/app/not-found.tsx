@@ -1,3 +1,5 @@
+import Link from "next/link"
+
 export default function NotFound() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-background">
@@ -6,9 +8,12 @@ export default function NotFound() {
         <p className="text-xl text-muted-foreground mb-4">
           Oops! Page not found
         </p>
-        <a href="/" className="text-primary underline-offset-4 hover:underline">
+        <Link
+          href="/"
+          className="text-primary underline-offset-4 hover:underline"
+        >
           Return to Home
-        </a>
+        </Link>
       </div>
     </div>
   )

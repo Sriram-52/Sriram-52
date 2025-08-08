@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { useToast } from "@/hooks/use-toast"
+import { toast } from "@/components/ui/sonner"
 
 const ContactSchema = z.object({
   name: z
@@ -33,8 +33,6 @@ const ContactSchema = z.object({
 type ContactValues = z.infer<typeof ContactSchema>
 
 export function ContactForm() {
-  const { toast } = useToast()
-
   const form = useForm<ContactValues>({
     resolver: zodResolver(ContactSchema),
     defaultValues: { name: "", email: "", message: "" },
@@ -52,11 +50,11 @@ export function ContactForm() {
       if (!res.ok) {
         throw new Error(data?.error || "Failed to send message")
       }
-      toast({ title: "Message sent", description: "Thanks! I'll reply soon." })
+      toast("Message sent", { description: "Thanks! I'll reply soon." })
       form.reset()
     } catch (err) {
       const msg = err instanceof Error ? err.message : "Something went wrong"
-      toast({ title: "Unable to send", description: msg })
+      toast("Unable to send", { description: msg })
     }
   }
 

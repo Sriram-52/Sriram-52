@@ -437,8 +437,6 @@ export default function Page() {
               </CardContent>
             </Card>
           </div>
-          {/* Add spacer to ensure proper scroll area for contact section */}
-          <div className="h-32 md:h-48"></div>
         </section>
       </main>
 

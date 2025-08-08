@@ -2,6 +2,7 @@
 
 import { cn } from "@/lib/utils"
 import { useEffect, useState, useCallback } from "react"
+import { Menu, X } from "lucide-react"
 
 type Section = {
   id: string
@@ -23,6 +24,7 @@ export function SiteNav({
   sections?: Section[]
 }) {
   const [activeId, setActiveId] = useState<string>(sections[0]?.id ?? "")
+  const [isMobileOpen, setIsMobileOpen] = useState<boolean>(false)
 
   const updateActiveSection = useCallback(() => {
     const headerOffset = 100 // Account for sticky header height plus some buffer
@@ -111,28 +113,73 @@ export function SiteNav({
 
     // Update URL hash
     window.history.replaceState(null, "", `#${sectionId}`)
+
+    // Close mobile menu after navigation
+    setIsMobileOpen(false)
   }
 
   return (
-    <nav className="hidden md:flex items-center gap-6 text-sm">
-      {sections.map(({ id, label }) => {
-        const isActive = activeId === id
-        return (
-          <button
-            key={id}
-            onClick={() => handleNavClick(id)}
-            className={cn(
-              "relative transition-colors",
-              "after:absolute after:-bottom-2 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-[width] after:duration-300",
-              isActive && "text-primary font-semibold after:w-full",
-              !isActive && "text-muted-foreground hover:text-primary",
-            )}
-          >
-            {label}
-          </button>
-        )
-      })}
-    </nav>
+    <div className="flex items-center">
+      {/* Desktop nav */}
+      <nav className="hidden md:flex items-center gap-6 text-sm">
+        {sections.map(({ id, label }) => {
+          const isActive = activeId === id
+          return (
+            <button
+              key={id}
+              onClick={() => handleNavClick(id)}
+              className={cn(
+                "relative transition-colors",
+                "after:absolute after:-bottom-2 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-[width] after:duration-300",
+                isActive && "text-primary font-semibold after:w-full",
+                !isActive && "text-muted-foreground hover:text-primary",
+              )}
+            >
+              {label}
+            </button>
+          )
+        })}
+      </nav>
+
+      {/* Mobile nav */}
+      <div className="md:hidden relative mr-3">
+        <button
+          aria-label={isMobileOpen ? "Close navigation" : "Open navigation"}
+          className="inline-flex items-center justify-center rounded-md p-2 border hover:bg-muted"
+          onClick={() => setIsMobileOpen((prev) => !prev)}
+        >
+          {isMobileOpen ? (
+            <X className="h-5 w-5" />
+          ) : (
+            <Menu className="h-5 w-5" />
+          )}
+        </button>
+        {isMobileOpen && (
+          <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-screen max-w-xs rounded-md border bg-background shadow-lg z-50">
+            <ul className="py-2">
+              {sections.map(({ id, label }) => {
+                const isActive = activeId === id
+                return (
+                  <li key={id}>
+                    <button
+                      onClick={() => handleNavClick(id)}
+                      className={cn(
+                        "w-full text-left px-4 py-2 text-sm transition-colors",
+                        isActive && "text-primary font-semibold",
+                        !isActive &&
+                          "text-foreground hover:bg-muted hover:text-primary",
+                      )}
+                    >
+                      {label}
+                    </button>
+                  </li>
+                )
+              })}
+            </ul>
+          </div>
+        )}
+      </div>
+    </div>
   )
 }
 

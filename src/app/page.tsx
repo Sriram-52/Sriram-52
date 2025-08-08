@@ -20,6 +20,7 @@ import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import { ContactForm } from "@/components/contact-form"
 import { Footer } from "@/components/footer"
+import { resumeInfo } from "@/lib/resume"
 
 const skills = {
   Frontend: [
@@ -57,17 +58,17 @@ const projects = [
     links: { demo: "#", code: "#" },
   },
   {
-    title: "RAG‑based Physician Documentation",
+    title: "RAG-based Physician Documentation",
     blurb:
-      "Retrieval‑augmented generation for clinical notes; improves accuracy and reduces time.",
-    stack: ["Next.js", "OpenAI", "React Query"],
+      "Retrieval-augmented generation for clinical notes; improves accuracy and reduces time.",
+    stack: ["OpenAI", "LangChain", "LangGraph"],
     links: { demo: "#", code: "#" },
   },
   {
     title: "Internal iHealth SDK",
     blurb:
       "BLE device integrations and data synchronization across mobile and backend.",
-    stack: ["React Native", "BLE", "NestJS"],
+    stack: ["React Native", "BLE", "iHealth"],
     links: { demo: "#", code: "#" },
   },
 ]
@@ -84,7 +85,12 @@ export default function Page() {
           <div className="flex items-center gap-2">
             <ThemeToggle />
             <Button asChild variant="hero" size="sm" className="hover-scale">
-              <a href={process.env.NEXT_PUBLIC_RESUME_URL} download>
+              <a
+                href={process.env.NEXT_PUBLIC_RESUME_URL}
+                download
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Download className="mr-2" /> Resume
               </a>
             </Button>
@@ -118,9 +124,10 @@ export default function Page() {
                 <span className="inline-flex items-center gap-1">
                   <MapPin className="h-4 w-4" /> Marietta, GA
                 </span>
-                <span className="inline-flex items-center gap-1">
-                  <Mail className="h-4 w-4" /> Contact below
-                </span>
+                <a href="#contact" className="inline-flex items-center gap-1">
+                  <Mail className="h-4 w-4" />{" "}
+                  <span className="story-link">Contact below</span>
+                </a>
                 <a href="#contact" className="story-link">
                   Available for opportunities
                 </a>
@@ -134,17 +141,19 @@ export default function Page() {
                 </Button>
                 <a
                   aria-label="GitHub"
-                  href="#"
+                  href={resumeInfo.github}
                   className="p-2 rounded-md border hover:bg-muted"
-                  rel="noopener"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <Github className="h-5 w-5" />
                 </a>
                 <a
                   aria-label="LinkedIn"
-                  href="#"
+                  href={resumeInfo.linkedIn}
                   className="p-2 rounded-md border hover:bg-muted"
-                  rel="noopener"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <Linkedin className="h-5 w-5" />
                 </a>
@@ -297,7 +306,7 @@ export default function Page() {
                       </Badge>
                     ))}
                   </div>
-                  <div className="flex items-center gap-2">
+                  {/* <div className="flex items-center gap-2">
                     <Button asChild variant="outline" size="sm">
                       <a href={p.links.demo} target="_blank" rel="noreferrer">
                         <ExternalLink className="mr-2 h-4 w-4" /> Demo
@@ -308,7 +317,7 @@ export default function Page() {
                         <Github className="mr-2 h-4 w-4" /> Code
                       </a>
                     </Button>
-                  </div>
+                  </div> */}
                 </CardContent>
               </Card>
             ))}
@@ -405,14 +414,18 @@ export default function Page() {
               </CardHeader>
               <CardContent className="flex flex-col gap-3">
                 <a
-                  href="#"
+                  href={resumeInfo.github}
                   className="inline-flex items-center gap-2 p-3 rounded-md border hover:bg-muted"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <Github className="h-4 w-4" /> GitHub
                 </a>
                 <a
-                  href="#"
+                  href={resumeInfo.linkedIn}
                   className="inline-flex items-center gap-2 p-3 rounded-md border hover:bg-muted"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <Linkedin className="h-4 w-4" /> LinkedIn
                 </a>
@@ -424,6 +437,8 @@ export default function Page() {
               </CardContent>
             </Card>
           </div>
+          {/* Add spacer to ensure proper scroll area for contact section */}
+          <div className="h-32 md:h-48"></div>
         </section>
       </main>
 

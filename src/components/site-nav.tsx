@@ -1,7 +1,7 @@
 "use client"
 
 import { cn } from "@/lib/utils"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useCallback } from "react"
 
 type Section = {
   id: string
@@ -24,96 +24,112 @@ export function SiteNav({
 }) {
   const [activeId, setActiveId] = useState<string>(sections[0]?.id ?? "")
 
-  useEffect(() => {
-    function getHeaderOffset(): number {
-      const header = document.querySelector("header.sticky")
-      return (header as HTMLElement | null)?.offsetHeight ?? 72
+  const updateActiveSection = useCallback(() => {
+    const headerOffset = 100 // Account for sticky header height plus some buffer
+    const scrollPosition = window.scrollY + headerOffset
+    const windowHeight = window.innerHeight
+    const documentHeight = document.documentElement.scrollHeight
+
+    // Check if we're at the bottom of the page (within 50px)
+    const isAtBottom = scrollPosition + windowHeight >= documentHeight - 50
+
+    // If we're at the bottom, always select the last section (contact)
+    if (isAtBottom) {
+      setActiveId(sections[sections.length - 1]?.id ?? "")
+      return
     }
 
-    let cachedTops: { id: string; top: number }[] = []
+    // Find the section that's currently in view
+    let currentSection = sections[0]?.id ?? ""
 
-    const computeTops = () => {
-      const elements = sections
-        .map((s) => document.getElementById(s.id))
-        .filter(Boolean) as HTMLElement[]
+    for (const section of sections) {
+      const element = document.getElementById(section.id)
+      if (!element) continue
 
-      cachedTops = elements.map((el) => {
-        const rectTop = el.getBoundingClientRect().top + window.scrollY
-        // Account for CSS scroll-margin-top so anchor jumps align correctly
-        const smt = parseFloat(
-          (getComputedStyle(el).scrollMarginTop || "0").toString(),
-        )
-        return {
-          id: el.id,
-          top: rectTop - (isNaN(smt) ? 0 : smt),
-        }
-      })
-      // Ensure increasing order just in case DOM order differs
-      cachedTops.sort((a, b) => a.top - b.top)
-    }
+      const rect = element.getBoundingClientRect()
+      const elementTop = rect.top + window.scrollY
 
-    const onScroll = () => {
-      const y = window.scrollY + getHeaderOffset() + 4 // small buffer
-      let current = cachedTops[0]?.id ?? sections[0]?.id ?? ""
-      for (const s of cachedTops) {
-        if (s.top <= y) current = s.id
-        else break
+      // Check if the element is in view (considering header offset)
+      if (elementTop <= scrollPosition) {
+        currentSection = section.id
+      } else {
+        break
       }
-      setActiveId(current)
     }
 
-    computeTops()
-    onScroll()
+    setActiveId(currentSection)
+  }, [sections])
 
-    window.addEventListener("scroll", onScroll, { passive: true })
-    window.addEventListener("resize", computeTops)
-    window.addEventListener("hashchange", onScroll)
-    // Recompute after fonts/layout settle
-    const t = window.setTimeout(() => {
-      computeTops()
-      onScroll()
-    }, 300)
-    // Also recompute shortly after in case sections mount later
-    const t2 = window.setTimeout(() => {
-      computeTops()
-      onScroll()
-    }, 800)
+  useEffect(() => {
+    // Initial calculation
+    updateActiveSection()
+
+    // Throttled scroll handler for better performance
+    let ticking = false
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          updateActiveSection()
+          ticking = false
+        })
+        ticking = true
+      }
+    }
+
+    // Event listeners
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    window.addEventListener("resize", updateActiveSection)
+    window.addEventListener("hashchange", updateActiveSection)
+
+    // Recompute after layout settles
+    const timeouts = [
+      setTimeout(updateActiveSection, 100),
+      setTimeout(updateActiveSection, 500),
+      setTimeout(updateActiveSection, 1000),
+    ]
 
     return () => {
-      window.removeEventListener("scroll", onScroll as EventListener)
-      window.removeEventListener("resize", computeTops as EventListener)
-      window.removeEventListener("hashchange", onScroll as EventListener)
-      window.clearTimeout(t)
-      window.clearTimeout(t2)
+      window.removeEventListener("scroll", handleScroll)
+      window.removeEventListener("resize", updateActiveSection)
+      window.removeEventListener("hashchange", updateActiveSection)
+      timeouts.forEach(clearTimeout)
     }
-  }, [sections])
+  }, [updateActiveSection])
+
+  const handleNavClick = (sectionId: string) => {
+    const element = document.getElementById(sectionId)
+    if (!element) return
+
+    // Smooth scroll to the element
+    element.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    })
+
+    // Update active state immediately for better UX
+    setActiveId(sectionId)
+
+    // Update URL hash
+    window.history.replaceState(null, "", `#${sectionId}`)
+  }
 
   return (
     <nav className="hidden md:flex items-center gap-6 text-sm">
       {sections.map(({ id, label }) => {
         const isActive = activeId === id
         return (
-          <a
+          <button
             key={id}
-            href={`#${id}`}
-            aria-current={isActive ? "true" : undefined}
+            onClick={() => handleNavClick(id)}
             className={cn(
-              "relative transition-colors text-muted-foreground hover:text-primary",
+              "relative transition-colors",
               "after:absolute after:-bottom-2 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-[width] after:duration-300",
               isActive && "text-primary font-semibold after:w-full",
+              !isActive && "text-muted-foreground hover:text-primary",
             )}
-            onClick={() => {
-              // Allow default anchor navigation, but schedule a read after scroll completes
-              // so active state updates immediately on click without waiting for scroll
-              window.requestAnimationFrame(() => {
-                // Fire a manual hashchange-like update
-                const ev = new Event("hashchange")
-                window.dispatchEvent(ev)
-              })
-            }}
           >
             {label}
-          </a>
+          </button>
         )
       })}
     </nav>

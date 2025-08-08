@@ -97,6 +97,13 @@ All colors MUST be HSL. */
   body {
     @apply bg-background text-foreground font-sans antialiased;
   }
+
+  /* Fix scroll lock issues with shadcn components */
+  body[data-scroll-locked] {
+    margin-right: 0px !important;
+    margin-left: 0px !important;
+    overflow: visible !important;
+  }
 }
 
 /* Utilities & component-level tokens */

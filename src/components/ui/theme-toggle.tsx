@@ -12,7 +12,10 @@ export function ThemeToggle() {
 
   if (!mounted) return null
 
-  const isDark = (theme ?? resolvedTheme) === "dark"
+  // Use the resolved theme when current theme is "system" to ensure
+  // the first toggle click works as expected.
+  const currentTheme = theme === "system" ? resolvedTheme : theme
+  const isDark = currentTheme === "dark"
 
   return (
     <Button

@@ -84,7 +84,7 @@ export default function Page() {
           <div className="flex items-center gap-2">
             <ThemeToggle />
             <Button asChild variant="hero" size="sm" className="hover-scale">
-              <a href="/resume.pdf" download>
+              <a href={process.env.NEXT_PUBLIC_RESUME_URL} download>
                 <Download className="mr-2" /> Resume
               </a>
             </Button>
@@ -92,14 +92,15 @@ export default function Page() {
         </div>
       </header>
 
-      <main id="top" className="container mx-auto px-4">
+      <main id="top">
         {/* Hero */}
         <section className="relative overflow-hidden pt-16 pb-12 md:pt-24 md:pb-20">
+          {/* Full-bleed background gradient */}
           <div
-            className="pointer-events-none absolute inset-x-0 -top-20 h-64 bg-gradient-brand opacity-30 blur-3xl"
+            className="pointer-events-none absolute left-1/2 -translate-x-1/2 -top-20 h-64 w-screen bg-gradient-brand opacity-30 blur-3xl"
             aria-hidden="true"
           />
-          <div className="relative grid gap-6 md:grid-cols-[1.5fr_1fr] items-start animate-enter">
+          <div className="relative container mx-auto px-4 grid gap-6 md:grid-cols-[1.5fr_1fr] items-start animate-enter">
             <div>
               <h1 className="font-display text-3xl md:text-5xl font-extrabold tracking-tight leading-tight">
                 Sri Ram Mohan Nyshadham —
@@ -180,7 +181,10 @@ export default function Page() {
         <Separator />
 
         {/* Skills */}
-        <section id="skills" className="py-12 md:py-16 scroll-mt-24">
+        <section
+          id="skills"
+          className="container mx-auto px-4 py-12 md:py-16 scroll-mt-24"
+        >
           <h2 className="font-display text-2xl md:text-3xl font-bold mb-8">
             Skills
           </h2>
@@ -205,7 +209,10 @@ export default function Page() {
         <Separator />
 
         {/* Experience */}
-        <section id="experience" className="py-12 md:py-16 scroll-mt-24">
+        <section
+          id="experience"
+          className="container mx-auto px-4 py-12 md:py-16 scroll-mt-24"
+        >
           <h2 className="font-display text-2xl md:text-3xl font-bold mb-8">
             Experience
           </h2>
@@ -265,7 +272,10 @@ export default function Page() {
         <Separator />
 
         {/* Projects */}
-        <section id="projects" className="py-12 md:py-16 scroll-mt-24">
+        <section
+          id="projects"
+          className="container mx-auto px-4 py-12 md:py-16 scroll-mt-24"
+        >
           <h2 className="font-display text-2xl md:text-3xl font-bold mb-8">
             Projects
           </h2>
@@ -308,7 +318,10 @@ export default function Page() {
         <Separator />
 
         {/* Education */}
-        <section id="education" className="py-12 md:py-16 scroll-mt-24">
+        <section
+          id="education"
+          className="container mx-auto px-4 py-12 md:py-16 scroll-mt-24"
+        >
           <h2 className="font-display text-2xl md:text-3xl font-bold mb-8">
             Education
           </h2>
@@ -337,7 +350,10 @@ export default function Page() {
         <Separator />
 
         {/* Certifications & Awards */}
-        <section id="certifications" className="py-12 md:py-16 scroll-mt-24">
+        <section
+          id="certifications"
+          className="container mx-auto px-4 py-12 md:py-16 scroll-mt-24"
+        >
           <h2 className="font-display text-2xl md:text-3xl font-bold mb-6">
             Certifications & Awards
           </h2>
@@ -360,7 +376,10 @@ export default function Page() {
         <Separator />
 
         {/* Contact */}
-        <section id="contact" className="py-12 md:py-16 scroll-mt-24">
+        <section
+          id="contact"
+          className="container mx-auto px-4 py-12 md:py-16 scroll-mt-24"
+        >
           <h2 className="font-display text-2xl md:text-3xl font-bold mb-6">
             Contact
           </h2>

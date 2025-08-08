@@ -24,10 +24,7 @@ const ContactSchema = z.object({
     .min(2, "Please enter at least 2 characters")
     .max(100, "Name is too long"),
   email: z.string().email("Please enter a valid email"),
-  message: z
-    .string()
-    .min(10, "Please provide a bit more detail")
-    .max(5000, "Message is too long"),
+  message: z.string().min(1, "Please enter a message"),
 })
 
 type ContactValues = z.infer<typeof ContactSchema>
@@ -115,7 +112,7 @@ export function ContactForm() {
             {isSubmitting ? "Sending..." : "Send message"}
           </Button>
           <Button type="button" variant="outline" asChild>
-            <a href="/resume.pdf" download>
+            <a href={process.env.NEXT_PUBLIC_RESUME_URL} download>
               <Download className="mr-2" />
               Resume
             </a>

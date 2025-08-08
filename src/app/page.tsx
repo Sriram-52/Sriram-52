@@ -18,6 +18,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { ContactForm } from "@/components/contact-form";
+import { Footer } from "@/components/footer";
 
 const skills = {
 	Frontend: [
@@ -419,16 +420,7 @@ export default function Page() {
 				</section>
 			</main>
 
-			<footer className="border-t">
-				<div className="container mx-auto flex flex-col md:flex-row items-center justify-between py-6 gap-4">
-					<p className="text-sm text-muted-foreground">
-						© 2024 Sri Ram Mohan Nyshadham. All rights reserved.
-					</p>
-					<a href="#top" className="text-sm story-link">
-						Back to top
-					</a>
-				</div>
-			</footer>
+			<Footer />
 		</div>
 	);
 }

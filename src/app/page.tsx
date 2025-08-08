@@ -10,6 +10,7 @@ import {
 	ExternalLink,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 import {
 	Card,
 	CardContent,
@@ -115,6 +116,7 @@ export default function Page() {
 						</a>
 					</nav>
 					<div className="flex items-center gap-2">
+						<ThemeToggle />
 						<Button asChild variant="hero" size="sm" className="hover-scale">
 							<a href="/resume.pdf" download>
 								<Download className="mr-2" /> Resume

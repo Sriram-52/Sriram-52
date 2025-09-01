@@ -7,9 +7,6 @@ export function Footer() {
         <p className="text-sm text-muted-foreground">
           © {currentYear} Sri Ram Mohan Nyshadham. All rights reserved.
         </p>
-        <a href="#top" className="text-sm story-link">
-          Back to top
-        </a>
       </div>
     </footer>
   )

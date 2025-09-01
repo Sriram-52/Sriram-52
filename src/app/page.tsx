@@ -20,149 +20,114 @@ import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import { ContactForm } from "@/components/contact-form"
 import { Footer } from "@/components/footer"
+import { BackToTop } from "@/components/back-to-top"
 import { resumeInfo } from "@/lib/resume"
 
 const skills = {
-  Frontend: [
+  "Frontend & Mobile": [
     "React",
     "Next.js",
+    "React Native",
     "TypeScript",
     "TailwindCSS",
-    "Vue.js",
     "Material-UI",
-    "shadcn/ui",
   ],
-  Backend: [
+  "Backend & Cloud": [
     "NestJS",
-    "Spring Boot",
     "Node.js",
     "Prisma",
-    "REST APIs",
-    "GraphQL",
-    "Express.js",
-  ],
-  "Mobile Development": [
-    "React Native",
-    "Flutter",
-    "Android (Java)",
-    "Dart",
-    "BLE SDKs",
-  ],
-  Languages: ["TypeScript", "JavaScript", "Java", "Python", "Dart", "C#"],
-  "Database & Cloud": [
     "PostgreSQL",
     "Firebase",
     "GCP",
-    "MongoDB",
-    "Prisma ORM",
-    "HIPAA Compliance",
-  ],
-  "Healthcare & Enterprise": [
-    "EMR Systems",
-    "HIPAA Compliance",
-    "Enterprise RBAC/ABAC",
-    "Medical Device Integration",
-    "FHIR Standards",
-    "Microservices Architecture",
+    "Cloud Run",
   ],
   "AI & Security": [
     "OpenAI API",
-    "LangChain",
     "LangGraph",
     "AI Agents",
-    "Computer Vision",
     "RSA Encryption",
-    "Machine Learning",
-    "RBAC Systems",
+    "HIPAA Compliance",
   ],
-  "DevOps & CI/CD": [
-    "GitHub Actions",
-    "Docker",
-    "Turborepo",
-    "Nx Monorepo",
-    "React Native CI",
-    "Mobile App Deployment",
-    "Automated Testing",
-  ],
+  DevOps: ["GitHub Actions", "Docker", "Turborepo", "Nx Monorepo", "CI/CD"],
 }
 
 const projects = [
   {
     title: "Secure Chat Application",
     blurb:
-      "React application with RSA encryption for secure real-time messaging. User-friendly interface with strong security features to protect user communications.",
+      "Real-time messaging app with military-grade RSA encryption. Built with React and TypeScript to ensure zero data leaks while maintaining seamless user experience.",
     stack: ["React", "TypeScript", "RSA Encryption", "Real-time"],
     links: {
       code: "https://github.com/Sriram-52/secure-chat",
     },
   },
   {
-    title: "NestJS React RBAC System",
+    title: "Enterprise RBAC System",
     blurb:
-      "Enterprise RBAC system built with NestJS backend and React frontend. Features microservices architecture, and scalable deployment.",
+      "Full-stack role-based access control platform. NestJS backend with React frontend enabling granular permissions and microservices-ready architecture.",
     stack: ["NestJS", "React", "TypeScript"],
     links: {
       code: "https://github.com/Sriram-52/nest-react-rbac",
     },
   },
   {
-    title: "Spring Boot Quiz Platform",
+    title: "Scalable Quiz Platform",
     blurb:
-      "Educational quiz platform with microservices architecture. Features containerized deployment, and scalable backend services.",
+      "High-performance educational platform built with Spring Boot microservices. Docker containerization ensures 99.9% uptime and horizontal scaling.",
     stack: ["Spring Boot", "Java", "PostgreSQL", "Docker"],
     links: {
       code: "https://github.com/Sriram-52/quiz-app-spring-boot",
     },
   },
   {
-    title: "OpenAI Integration Starter",
+    title: "AI Integration Toolkit",
     blurb:
-      "TypeScript application showcasing OpenAI API integration. Features modular architecture for AI-powered applications.",
+      "Production-ready TypeScript starter for OpenAI applications. Modular architecture with best practices for building intelligent, AI-powered products.",
     stack: ["TypeScript", "OpenAI API", "Node.js", "AI"],
     links: {
       code: "https://github.com/Sriram-52/openai-starter",
     },
   },
   {
-    title: "Flutter Redux Todo App",
+    title: "Cross-Platform Todo App",
     blurb:
-      "Cross-platform mobile todo application built with Flutter and Redux. Demonstrates state management and mobile UI/UX best practices.",
+      "Feature-rich mobile app showcasing Flutter + Redux state management. Demonstrates advanced mobile UI/UX patterns and reliable offline-first architecture.",
     stack: ["Flutter", "Dart", "Redux", "Mobile"],
     links: {
       code: "https://github.com/Sriram-52/Flutter_todo_list",
     },
   },
   {
-    title: "Cotton Disease Detection ML",
+    title: "AI Disease Detection",
     blurb:
-      "Machine learning model for cotton leaf disease detection using computer vision. Implements image classification with high accuracy for agricultural applications.",
+      "Computer vision model for agricultural disease identification. High-accuracy ML classification system helping farmers detect cotton leaf diseases early.",
     stack: ["Python", "Jupyter", "Computer Vision", "ML"],
     links: {
       code: "https://github.com/Sriram-52/cotton-leaf-disease-detection",
     },
   },
   {
-    title: "Instant Connect Mobile",
+    title: "Real-Time Social Connect",
     blurb:
-      "Mobile application that helps people connect with other users instantly. Built with TypeScript for cross-platform compatibility and real-time features.",
+      "Instant networking mobile app built with TypeScript. Cross-platform solution enabling seamless user discovery and real-time connections.",
     stack: ["TypeScript", "Mobile", "Real-time", "Networking"],
     links: {
       code: "https://github.com/Sriram-52/instant-connect",
     },
   },
   {
-    title: "SMS Listener Android",
+    title: "Smart SMS Processor",
     blurb:
-      "Android application for SMS message handling and processing. Demonstrates mobile development with Java and Android SDK integration.",
+      "Android automation app for intelligent SMS handling. Native Java implementation with robust message processing and Android SDK integration.",
     stack: ["Java", "Android", "SMS API", "Mobile"],
     links: {
       code: "https://github.com/Sriram-52/sms-listener",
     },
   },
   {
-    title: "Portfolio Website",
+    title: "Modern Portfolio Site",
     blurb:
-      "Modern portfolio built with Next.js 15 and TypeScript. Features automated deployment with dark mode, animations, and optimized performance.",
+      "This responsive portfolio built with Next.js 15 and TypeScript. Features dark mode, elegant animations, gradient effects, and optimized performance with automated deployment.",
     stack: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel"],
     links: {
       code: "https://github.com/Sriram-52/Sriram-52",
@@ -203,20 +168,23 @@ export default function Page() {
             className="pointer-events-none absolute left-1/2 -translate-x-1/2 -top-20 h-64 w-screen bg-gradient-brand opacity-30 blur-3xl"
             aria-hidden="true"
           />
-          <div className="relative container mx-auto px-4 grid gap-6 md:grid-cols-[1.5fr_1fr] items-start animate-enter">
+          <div className="relative container mx-auto px-4 grid gap-6 md:grid-cols-[1.5fr_1fr] items-start animate-slide-up">
             <div>
-              <h1 className="font-display text-3xl md:text-5xl font-extrabold tracking-tight leading-tight">
-                Sri Ram Mohan Nyshadham —
+              <h1 className="font-display text-3xl md:text-5xl font-extrabold tracking-tight leading-tight animate-slide-up stagger-1">
+                <span className="gradient-text">Sri Ram Mohan Nyshadham</span>
               </h1>
-              <h1 className="font-display text-3xl md:text-5xl font-extrabold tracking-tight leading-tight">
-                Senior Full Stack Developer
-              </h1>
-              <h1 className="font-display text-3xl md:text-5xl font-extrabold tracking-tight leading-tight">
-                (Web & Mobile)
-              </h1>
-              <p className="mt-4 text-muted-foreground text-lg max-w-2xl">
-                TypeScript • React • Next.js • React Native • NestJS • Node.js •
-                AI Integration • CI/CD • GCP
+              <div className="mt-2 space-y-1">
+                <h2 className="font-display text-2xl md:text-4xl font-bold tracking-tight leading-tight animate-slide-up stagger-2">
+                  Senior Full Stack Developer
+                </h2>
+                <h3 className="font-display text-lg md:text-xl font-medium tracking-tight leading-tight text-muted-foreground animate-slide-up stagger-3">
+                  Web & Mobile Specialist
+                </h3>
+              </div>
+              <p className="mt-4 text-muted-foreground text-lg max-w-2xl animate-slide-up stagger-4">
+                Building scalable web and mobile applications with React,
+                TypeScript, and modern cloud architecture. Passionate about
+                creating efficient, secure, and user-focused solutions.
               </p>
               <div className="mt-4 flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
                 <span className="inline-flex items-center gap-1">
@@ -230,8 +198,12 @@ export default function Page() {
                   Available for opportunities
                 </a>
               </div>
-              <div className="mt-6 flex items-center gap-3">
-                <Button asChild variant="hero" className="hover-scale">
+              <div className="mt-6 flex items-center gap-3 animate-slide-up stagger-5">
+                <Button
+                  asChild
+                  variant="hero"
+                  className="hover-scale pulse-glow"
+                >
                   <a href="#contact">Get in touch</a>
                 </Button>
                 <Button asChild variant="outline">
@@ -240,25 +212,28 @@ export default function Page() {
                 <a
                   aria-label="GitHub"
                   href={resumeInfo.github}
-                  className="p-2 rounded-md border hover:bg-muted"
+                  className="p-2 rounded-md border hover:bg-muted min-h-[44px] min-w-[44px] flex items-center justify-center glow-on-hover transition-all duration-300"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Github className="h-5 w-5" />
+                  <Github className="h-5 w-5 icon-bounce" />
                 </a>
                 <a
                   aria-label="LinkedIn"
                   href={resumeInfo.linkedIn}
-                  className="p-2 rounded-md border hover:bg-muted"
+                  className="p-2 rounded-md border hover:bg-muted min-h-[44px] min-w-[44px] flex items-center justify-center glow-on-hover transition-all duration-300"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Linkedin className="h-5 w-5" />
+                  <Linkedin className="h-5 w-5 icon-bounce" />
                 </a>
               </div>
             </div>
 
-            <Card id="about" className="shadow-elegant scroll-mt-24">
+            <Card
+              id="about"
+              className="shadow-elegant scroll-mt-24 animate-slide-up stagger-6 float"
+            >
               <CardHeader>
                 <CardTitle>About Me</CardTitle>
                 <CardDescription>
@@ -294,18 +269,25 @@ export default function Page() {
           id="skills"
           className="container mx-auto px-4 py-12 md:py-16 scroll-mt-24"
         >
-          <h2 className="font-display text-2xl md:text-3xl font-bold mb-8">
+          <h2 className="font-display text-2xl md:text-3xl font-bold mb-8 animate-slide-up">
             Skills
           </h2>
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {Object.entries(skills).map(([group, items]) => (
-              <Card key={group} className="h-full">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {Object.entries(skills).map(([group, items], index) => (
+              <Card
+                key={group}
+                className={`h-full animate-slide-up hover-scale stagger-${index + 1} shimmer`}
+              >
                 <CardHeader>
                   <CardTitle className="text-lg">{group}</CardTitle>
                 </CardHeader>
                 <CardContent className="flex flex-wrap gap-2">
                   {items.map((sk) => (
-                    <Badge key={sk} variant="secondary">
+                    <Badge
+                      key={sk}
+                      variant="secondary"
+                      className="hover:scale-110 transition-all duration-200 glow-on-hover"
+                    >
                       {sk}
                     </Badge>
                   ))}
@@ -322,11 +304,11 @@ export default function Page() {
           id="experience"
           className="container mx-auto px-4 py-12 md:py-16 scroll-mt-24"
         >
-          <h2 className="font-display text-2xl md:text-3xl font-bold mb-8">
+          <h2 className="font-display text-2xl md:text-3xl font-bold mb-8 animate-slide-up">
             Experience
           </h2>
           <div className="grid gap-6">
-            <Card>
+            <Card className="animate-slide-up stagger-1 project-card">
               <CardHeader>
                 <CardTitle>
                   Atelia Software Inc.{" "}
@@ -341,45 +323,30 @@ export default function Page() {
               <CardContent className="space-y-2 text-sm">
                 <ul className="list-disc pl-5 space-y-2">
                   <li>
-                    <strong>Technical Leadership & Migration:</strong> Led
-                    critical Flutter to React Native migration team, overseeing
-                    mobile architecture redesign for patient and provider
-                    applications across healthcare platform.
+                    <strong>Cost Optimization:</strong> Migrated GKE → Cloud Run
+                    microservices; reduced infra costs by 50%.
                   </li>
                   <li>
-                    <strong>Microservices Architecture:</strong> Built and
-                    maintained 20+ TypeScript microservices including EMR
-                    integration, patient flow management, claims processing, and
-                    IVR systems.
+                    <strong>Mobile Stack Leadership:</strong> Led Flutter →
+                    React Native migration; built iHealth BLE SDK.
                   </li>
                   <li>
-                    <strong>CI/CD & DevOps Excellence:</strong> Architected
-                    comprehensive GitHub Actions workflows, Docker
-                    containerization, release automation, and monitoring systems
-                    reducing deployment time by 60%.
+                    <strong>Monorepo & Type Safety:</strong> Introduced
+                    Turborepo, migrated JS → TS, used OpenAPI + Orval.
                   </li>
                   <li>
-                    <strong>AI Agent Development:</strong> Built intelligent
-                    healthcare chatbots using LangGraph for clinical
-                    documentation, patient interaction, and administrative
-                    workflows.
+                    <strong>AI-Powered Experiences:</strong> Built
+                    LangGraph-based healthcare chatbots and Twilio integrations.
                   </li>
                   <li>
-                    <strong>Enterprise Security & Compliance:</strong>{" "}
-                    Implemented CASL for RBAC/ABAC authorization, ZenStack for
-                    multi-tenancy, Temporal workflow orchestration, and
-                    HIPAA-compliant data processing across healthcare platform.
-                  </li>
-                  <li>
-                    <strong>Performance Optimization:</strong> Orchestrated
-                    Cloud Run migration, dependency management (TypeScript, pnpm
-                    and turborepo), reducing infrastructure costs by 50%.
+                    <strong>DevOps Excellence:</strong> Automated CI/CD with
+                    GitHub Actions; ~30% faster releases.
                   </li>
                 </ul>
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="animate-slide-up stagger-2 project-card">
               <CardHeader>
                 <CardTitle>
                   Eficens Systems LLC{" "}
@@ -392,31 +359,18 @@ export default function Page() {
               <CardContent className="space-y-2 text-sm">
                 <ul className="list-disc pl-5 space-y-2">
                   <li>
-                    <strong>Internal Management Platform:</strong> Built
-                    comprehensive system for timesheet tracking, payroll
-                    processing, and employee management serving 100+ consultants
-                    across multiple client projects.
+                    <strong>CRM Platform:</strong> Built comprehensive
+                    timesheet, payroll, and employee management system serving
+                    100+ consultants.
                   </li>
                   <li>
-                    <strong>Project & Resource Management:</strong> Developed
-                    allocation system with placement tracking, automated
-                    workflow processes, and real-time project status monitoring.
+                    <strong>Firebase Migration:</strong> Migrated legacy systems
+                    to Firebase backend with real-time data synchronization.
                   </li>
                   <li>
-                    <strong>Enterprise Dashboard & Analytics:</strong>{" "}
-                    Implemented role-based access control, reporting dashboard
-                    with AG Grid data visualization, and Chart.js/ApexCharts
-                    analytics for HR operations.
-                  </li>
-                  <li>
-                    <strong>Automated Payroll Processing:</strong> Created
-                    calculation system with integration to timesheet data,
-                    approval workflows, and PDF generation for payroll reports.
-                  </li>
-                  <li>
-                    <strong>Full-Stack Architecture:</strong> Built with React,
-                    Redux, Firebase backend, Material-UI components, and
-                    comprehensive data management with export capabilities.
+                    <strong>RBAC Dashboards:</strong> Implemented role-based
+                    access control with AG Grid data visualization and Chart.js
+                    analytics.
                   </li>
                 </ul>
               </CardContent>
@@ -431,12 +385,15 @@ export default function Page() {
           id="projects"
           className="container mx-auto px-4 py-12 md:py-16 scroll-mt-24"
         >
-          <h2 className="font-display text-2xl md:text-3xl font-bold mb-8">
+          <h2 className="font-display text-2xl md:text-3xl font-bold mb-8 animate-slide-up">
             Projects
           </h2>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {projects.map((p) => (
-              <Card key={p.title} className="flex flex-col">
+            {projects.map((p, index) => (
+              <Card
+                key={p.title}
+                className={`flex flex-col project-card animate-slide-up stagger-${(index % 6) + 1}`}
+              >
                 <CardHeader>
                   <CardTitle className="text-lg flex items-center justify-between">
                     {p.title}
@@ -462,7 +419,13 @@ export default function Page() {
                     )} */}
                     {p.links.code && (
                       <Button asChild variant="ghost" size="sm">
-                        <a href={p.links.code} target="_blank" rel="noreferrer">
+                        <a
+                          href={p.links.code}
+                          target="_blank"
+                          rel="noreferrer"
+                          aria-label={`View ${p.title} code on GitHub`}
+                          className="glow-on-hover"
+                        >
                           <Github className="mr-2 h-4 w-4" /> Code
                         </a>
                       </Button>
@@ -481,27 +444,51 @@ export default function Page() {
           id="education"
           className="container mx-auto px-4 py-12 md:py-16 scroll-mt-24"
         >
-          <h2 className="font-display text-2xl md:text-3xl font-bold mb-8">
+          <h2 className="font-display text-2xl md:text-3xl font-bold mb-8 animate-slide-up">
             Education
           </h2>
           <div className="grid gap-6 md:grid-cols-2">
-            <Card>
+            <Card className="animate-slide-up stagger-1 project-card shimmer education-card achievement-highlight">
               <CardHeader>
-                <CardTitle>Kennesaw State University</CardTitle>
-                <CardDescription>
-                  MS in Computer Science — GPA: 3.83/4
-                </CardDescription>
-              </CardHeader>
-            </Card>
-            <Card>
-              <CardHeader>
-                <CardTitle>
-                  Sasi Institute of Technology and Engineering
+                <CardTitle className="flex items-center gap-2">
+                  🎓 Kennesaw State University
                 </CardTitle>
                 <CardDescription>
-                  BTech in Computer Science — GPA: 9.59/10
+                  MS in Computer Science —{" "}
+                  <span className="font-semibold text-primary">
+                    GPA: 3.83/4
+                  </span>
                 </CardDescription>
               </CardHeader>
+              <CardContent className="text-sm text-muted-foreground">
+                <p>
+                  Advanced coursework in software engineering, algorithms, and
+                  data structures. Focus on modern web technologies and cloud
+                  computing.
+                </p>
+              </CardContent>
+            </Card>
+            <Card className="animate-slide-up stagger-2 project-card shimmer education-card achievement-highlight">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  🎓 Sasi Institute of Technology and Engineering
+                </CardTitle>
+                <CardDescription>
+                  BTech in Computer Science —{" "}
+                  <span className="font-semibold text-primary">
+                    GPA: 9.59/10
+                  </span>
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground">
+                <p>
+                  <span className="font-medium text-primary">
+                    Top 1% of graduating class.
+                  </span>{" "}
+                  Strong foundation in computer science fundamentals,
+                  programming languages, and software development.
+                </p>
+              </CardContent>
             </Card>
           </div>
         </section>
@@ -513,29 +500,73 @@ export default function Page() {
           id="certifications"
           className="container mx-auto px-4 py-12 md:py-16 scroll-mt-24"
         >
-          <h2 className="font-display text-2xl md:text-3xl font-bold mb-6">
+          <h2 className="font-display text-2xl md:text-3xl font-bold mb-6 animate-slide-up">
             Certifications & Awards
           </h2>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            <Card>
+            <Card className="animate-slide-up stagger-1 project-card shimmer glow-on-hover certificate-badge achievement-highlight">
               <CardHeader>
-                <CardTitle>HackerRank Certificates</CardTitle>
-                <CardDescription>Node.js, React, SQL, REST API</CardDescription>
-              </CardHeader>
-            </Card>
-            <Card>
-              <CardHeader>
-                <CardTitle>IEEE Xtreme Competition</CardTitle>
-                <CardDescription>All India Rank 62</CardDescription>
-              </CardHeader>
-            </Card>
-            <Card>
-              <CardHeader>
-                <CardTitle>Open Source Contributions</CardTitle>
+                <CardTitle className="flex items-center gap-2">
+                  🏆 HackerRank Certificates
+                </CardTitle>
                 <CardDescription>
-                  50+ GitHub repositories, TypeScript & Java expertise
+                  <span className="font-medium text-primary">
+                    Node.js, React, SQL, REST API
+                  </span>
                 </CardDescription>
               </CardHeader>
+              <CardContent className="text-sm text-muted-foreground">
+                <p>
+                  Certified in multiple programming domains with{" "}
+                  <span className="font-medium text-primary">
+                    strong problem-solving scores
+                  </span>
+                  .
+                </p>
+              </CardContent>
+            </Card>
+            <Card className="animate-slide-up stagger-2 project-card shimmer glow-on-hover certificate-badge achievement-highlight">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  🥈 IEEE Xtreme Competition
+                </CardTitle>
+                <CardDescription>
+                  <span className="font-semibold text-primary">
+                    All India Rank 62
+                  </span>
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground">
+                <p>
+                  <span className="font-medium text-primary">
+                    Top 100 nationally
+                  </span>{" "}
+                  in prestigious 24-hour programming competition among{" "}
+                  <span className="font-medium">4000+ participants</span>.
+                </p>
+              </CardContent>
+            </Card>
+            <Card className="animate-slide-up stagger-3 project-card shimmer glow-on-hover certificate-badge achievement-highlight">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  💻 Open Source Contributions
+                </CardTitle>
+                <CardDescription>
+                  <span className="font-medium text-primary">
+                    50+ GitHub repositories
+                  </span>
+                  , TypeScript & Java expertise
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground">
+                <p>
+                  Active contributor to open source projects with focus on{" "}
+                  <span className="font-medium text-primary">
+                    modern web technologies
+                  </span>{" "}
+                  and developer tools.
+                </p>
+              </CardContent>
             </Card>
           </div>
         </section>
@@ -547,11 +578,11 @@ export default function Page() {
           id="contact"
           className="container mx-auto px-4 py-12 md:py-16 scroll-mt-24"
         >
-          <h2 className="font-display text-2xl md:text-3xl font-bold mb-6">
+          <h2 className="font-display text-2xl md:text-3xl font-bold mb-6 animate-slide-up">
             Contact
           </h2>
           <div className="grid gap-6 md:grid-cols-[1fr_1fr]">
-            <Card>
+            <Card className="animate-slide-up stagger-1 project-card">
               <CardHeader>
                 <CardTitle>Get in touch</CardTitle>
                 <CardDescription>
@@ -563,7 +594,7 @@ export default function Page() {
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="animate-slide-up stagger-2 project-card">
               <CardHeader>
                 <CardTitle>Quick links</CardTitle>
                 <CardDescription>
@@ -573,19 +604,23 @@ export default function Page() {
               <CardContent className="flex flex-col gap-3">
                 <a
                   href={resumeInfo.github}
-                  className="inline-flex items-center gap-2 p-3 rounded-md border hover:bg-muted"
+                  className="inline-flex items-center gap-2 p-3 rounded-md border hover:bg-muted glow-on-hover transition-all duration-300 hover:scale-105 hover:border-primary/50"
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="Visit GitHub profile"
                 >
-                  <Github className="h-4 w-4" /> GitHub
+                  <Github className="h-4 w-4 transition-transform duration-300 hover:rotate-12" />{" "}
+                  GitHub
                 </a>
                 <a
                   href={resumeInfo.linkedIn}
-                  className="inline-flex items-center gap-2 p-3 rounded-md border hover:bg-muted"
+                  className="inline-flex items-center gap-2 p-3 rounded-md border hover:bg-muted glow-on-hover transition-all duration-300 hover:scale-105 hover:border-primary/50"
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="Visit LinkedIn profile"
                 >
-                  <Linkedin className="h-4 w-4" /> LinkedIn
+                  <Linkedin className="h-4 w-4 transition-transform duration-300 hover:rotate-12" />{" "}
+                  LinkedIn
                 </a>
                 <div className="text-sm text-muted-foreground mt-2">
                   <p className="inline-flex items-center gap-1">
@@ -599,6 +634,7 @@ export default function Page() {
       </main>
 
       <Footer />
+      <BackToTop />
     </div>
   )
 }

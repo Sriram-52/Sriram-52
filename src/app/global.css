@@ -96,6 +96,18 @@ All colors MUST be HSL. */
   }
   body {
     @apply bg-background text-foreground font-sans antialiased;
+    background-image:
+      radial-gradient(
+        circle at 25% 25%,
+        hsl(var(--brand-1) / 0.05) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 75% 75%,
+        hsl(var(--brand-2) / 0.05) 0%,
+        transparent 50%
+      );
+    background-attachment: fixed;
   }
 
   /* Fix scroll lock issues with shadcn components */
@@ -129,5 +141,297 @@ All colors MUST be HSL. */
   }
   .story-link:hover::after {
     @apply origin-bottom-left scale-x-100;
+  }
+
+  /* Enhanced project card animations */
+  .project-card {
+    @apply transition-all duration-300 ease-out;
+  }
+  .project-card:hover {
+    @apply transform -translate-y-2 shadow-xl;
+    box-shadow: 0 20px 50px -12px hsl(var(--brand-1) / 0.25);
+  }
+
+  /* Floating animation */
+  .float {
+    animation: float 6s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  /* Gradient text animation */
+  .gradient-text {
+    @apply bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 bg-clip-text text-transparent;
+    background-size: 200% auto;
+    animation: gradient-shift 3s ease-in-out infinite;
+  }
+  @keyframes gradient-shift {
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  /* Pulse glow effect */
+  .pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite alternate;
+  }
+  @keyframes pulse-glow {
+    from {
+      box-shadow: 0 0 20px hsl(var(--brand-2) / 0.3);
+    }
+    to {
+      box-shadow:
+        0 0 30px hsl(var(--brand-1) / 0.5),
+        0 0 40px hsl(var(--brand-2) / 0.3);
+    }
+  }
+
+  /* Stagger animation delays */
+  .stagger-1 {
+    animation-delay: 0.1s;
+  }
+  .stagger-2 {
+    animation-delay: 0.2s;
+  }
+  .stagger-3 {
+    animation-delay: 0.3s;
+  }
+  .stagger-4 {
+    animation-delay: 0.4s;
+  }
+  .stagger-5 {
+    animation-delay: 0.5s;
+  }
+  .stagger-6 {
+    animation-delay: 0.6s;
+  }
+
+  /* Scroll-triggered animations */
+  .slide-up {
+    animation: slide-up 0.6s ease-out;
+  }
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Bounce-in animation */
+  .bounce-in {
+    animation: bounce-in 0.8s ease-out;
+  }
+  @keyframes bounce-in {
+    0% {
+      opacity: 0;
+      transform: scale(0.3);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+    70% {
+      transform: scale(0.9);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  /* Shimmer effect for cards */
+  .shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+  .shimmer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsl(var(--brand-1) / 0.1),
+      transparent
+    );
+    animation: shimmer 2.5s infinite;
+  }
+  @keyframes shimmer {
+    0% {
+      left: -100%;
+    }
+    100% {
+      left: 100%;
+    }
+  }
+
+  /* Icon bounce animation */
+  .icon-bounce {
+    animation: icon-bounce 2s ease-in-out infinite;
+  }
+  @keyframes icon-bounce {
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-10px);
+    }
+    60% {
+      transform: translateY(-5px);
+    }
+  }
+
+  /* Glow on hover for buttons */
+  .glow-on-hover {
+    transition: all 0.3s ease;
+  }
+  .glow-on-hover:hover {
+    box-shadow:
+      0 0 20px hsl(var(--brand-1) / 0.5),
+      0 0 40px hsl(var(--brand-2) / 0.3),
+      inset 0 0 20px hsl(var(--brand-1) / 0.1);
+  }
+
+  /* Achievement highlight animation */
+  .achievement-highlight {
+    position: relative;
+  }
+  .achievement-highlight::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(
+      45deg,
+      hsl(var(--brand-1)),
+      hsl(var(--brand-2)),
+      hsl(var(--brand-1))
+    );
+    background-size: 200% 200%;
+    animation: gradient-border 3s ease infinite;
+    border-radius: inherit;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .achievement-highlight:hover::before {
+    opacity: 0.6;
+  }
+  @keyframes gradient-border {
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  /* Education card special effects */
+  .education-card {
+    position: relative;
+    overflow: hidden;
+  }
+  .education-card::after {
+    content: "✨";
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 1.2rem;
+    opacity: 0;
+    transition: all 0.3s ease;
+    transform: rotate(0deg) scale(0.8);
+  }
+  .education-card:hover::after {
+    opacity: 1;
+    transform: rotate(360deg) scale(1);
+  }
+
+  /* Certificate badge effect */
+  .certificate-badge {
+    position: relative;
+  }
+  .certificate-badge::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, hsl(var(--brand-1) / 0.2), transparent);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.6s ease;
+  }
+  .certificate-badge:hover::before {
+    width: 100px;
+    height: 100px;
+  }
+
+  /* Back to top button enhancements */
+  .back-to-top-enter {
+    animation: back-to-top-enter 0.3s ease-out;
+  }
+  @keyframes back-to-top-enter {
+    from {
+      opacity: 0;
+      transform: translateY(20px) scale(0.8);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  /* Enhanced floating effect for back-to-top */
+  .float-gentle {
+    animation: float-gentle 4s ease-in-out infinite;
+  }
+  @keyframes float-gentle {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-5px);
+    }
+  }
+
+  /* Smooth reveal animation */
+  .reveal-up {
+    animation: reveal-up 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  @keyframes reveal-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px) scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
   }
 }

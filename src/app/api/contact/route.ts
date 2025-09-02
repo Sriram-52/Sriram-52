@@ -1,5 +1,5 @@
 import type { NextRequest } from "next/server"
-import { z } from "zod"
+import { z } from 'zod/v3';
 import FormData from "form-data"
 import Mailgun from "mailgun.js"
 
@@ -17,7 +17,7 @@ function escapeHtml(input: string): string {
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;")
+    .replace(/'/g, "&#039;");
 }
 
 function requiredEnv(name: string): string {

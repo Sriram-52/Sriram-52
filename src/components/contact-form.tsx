@@ -3,7 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Download } from "lucide-react"
 import { useForm } from "react-hook-form"
-import { z } from "zod"
+import { z } from 'zod/v3';
 
 import { Button } from "@/components/ui/button"
 import {

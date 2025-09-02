@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import "./global.css"
 import { Toaster } from "@/components/ui/sonner"
 import { Providers } from "@/components/providers"
+import { PortfolioChatbot } from "@/components/portfolio-chatbot"
 import { resumeInfo } from "@/lib/resume"
 
 export const metadata: Metadata = {
@@ -67,6 +68,7 @@ export default function RootLayout({
         <Providers>
           <Toaster />
           {children}
+          <PortfolioChatbot />
         </Providers>
       </body>
     </html>

@@ -171,7 +171,7 @@ export default function Page() {
           <div className="relative container mx-auto px-4 grid gap-6 md:grid-cols-[1.5fr_1fr] items-start animate-slide-up">
             <div>
               <h1 className="font-display text-3xl md:text-5xl font-extrabold tracking-tight leading-tight animate-slide-up stagger-1">
-                <span className="gradient-text">Sri Ram Mohan Nyshadham</span>
+                <span className="gradient-text">Hi, I&apos;m Ram!</span>
               </h1>
               <div className="mt-2 space-y-1">
                 <h2 className="font-display text-2xl md:text-4xl font-bold tracking-tight leading-tight animate-slide-up stagger-2">

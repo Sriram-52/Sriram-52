@@ -52,17 +52,21 @@ export function PortfolioChatbot() {
     }
   }
 
-  // Auto-popup on first visit
+  // Show subtle hints for each session
   useEffect(() => {
-    const hasVisited = localStorage.getItem("portfolio-chatbot-visited")
-    if (!hasVisited) {
+    const hasSeenHintThisSession = sessionStorage.getItem(
+      "portfolio-chatbot-hint-shown",
+    )
+    if (!hasSeenHintThisSession) {
+      // Show hints for 8 seconds, then mark as seen for this session
       const timer = setTimeout(() => {
-        setIsOpen(true)
         setHasShownInitialPopup(true)
-        localStorage.setItem("portfolio-chatbot-visited", "true")
-      }, 3000) // Show after 3 seconds
+        sessionStorage.setItem("portfolio-chatbot-hint-shown", "true")
+      }, 8000) // Show hints for 8 seconds
 
       return () => clearTimeout(timer)
+    } else {
+      setHasShownInitialPopup(true)
     }
   }, [])
 
@@ -74,6 +78,11 @@ export function PortfolioChatbot() {
   const toggleChat = () => {
     setIsOpen(!isOpen)
     setIsMinimized(false)
+    // Hide hints immediately when user interacts with the chat
+    if (!isOpen) {
+      setHasShownInitialPopup(true)
+      sessionStorage.setItem("portfolio-chatbot-hint-shown", "true")
+    }
   }
 
   const minimizeChat = () => {
@@ -88,19 +97,33 @@ export function PortfolioChatbot() {
     <>
       {/* Floating Chat Button */}
       {!isOpen && (
-        <Button
-          onClick={toggleChat}
-          className={cn(
-            "fixed bottom-6 right-6 h-14 w-14 rounded-full z-50",
-            "bg-gradient-brand text-white shadow-elegant",
-            "transition-all duration-300 hover:scale-110 hover:shadow-glow",
-            "glow-on-hover pulse-glow",
-            !hasShownInitialPopup && "animate-pulse",
+        <div className="fixed bottom-6 right-6 z-50">
+          <Button
+            onClick={toggleChat}
+            className={cn(
+              "h-14 w-14 rounded-full relative",
+              "bg-gradient-brand text-white shadow-elegant",
+              "transition-all duration-300 hover:scale-110 hover:shadow-glow",
+              "glow-on-hover pulse-glow",
+              !hasShownInitialPopup && "animate-pulse",
+            )}
+            aria-label="Open portfolio assistant - Ask me about Ram's skills and experience"
+            title="Portfolio Assistant"
+          >
+            <MessageCircle className="h-6 w-6" />
+            {/* Subtle hint indicator for first-time visitors */}
+            {!hasShownInitialPopup && !isOpen && (
+              <div className="absolute -top-1 -right-1 h-4 w-4 bg-yellow-400 rounded-full animate-ping" />
+            )}
+          </Button>
+          {/* Optional tooltip hint that appears briefly */}
+          {!hasShownInitialPopup && !isOpen && (
+            <div className="absolute bottom-16 right-0 bg-white dark:bg-gray-900 text-gray-900 dark:text-white px-3 py-2 rounded-lg shadow-lg text-sm whitespace-nowrap border animate-fade-in pointer-events-none">
+              💬 Ask me about Ram&apos;s experience!
+              <div className="absolute top-full right-4 border-4 border-transparent border-t-white dark:border-t-gray-900"></div>
+            </div>
           )}
-          aria-label="Open chat assistant"
-        >
-          <MessageCircle className="h-6 w-6" />
-        </Button>
+        </div>
       )}
 
       {/* Chat Window */}

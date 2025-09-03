@@ -1,45 +1,22 @@
-import { Pinecone } from "@pinecone-database/pinecone"
-import { google } from "@ai-sdk/google"
 import { convertToModelMessages, streamText, UIMessage } from "ai"
 import { NextRequest } from "next/server"
 import { SYSTEM_PROMPT } from "@/lib/bot/prompt"
-import { generateEmbedding } from "@/lib/bot/embeddings"
+import { findRelevantChunks } from "@/lib/bot/embeddings"
+import { google } from "@ai-sdk/google"
 
-const MODEL_NAME = process.env.MODEL_NAME || "gemini-1.5-flash"
-
-// Initialize Pinecone
-const pinecone = new Pinecone({
-  apiKey: process.env.PINECONE_API_KEY!,
-})
-
-const index = pinecone.index(process.env.PINECONE_INDEX_NAME!)
+const MODEL_NAME = process.env.MODEL_NAME || "gemini-2.0-flash"
 
 export async function POST(req: NextRequest) {
   try {
     const { messages }: { messages: UIMessage[] } = await req.json()
 
-    const modelMessages = convertToModelMessages(messages)
-    const lastMessage = modelMessages.at(-1)
-
+    // Query Pinecone for relevant portfolio information
     let context = ""
-    console.log("Last message:", lastMessage)
-
-    if (lastMessage && lastMessage.content) {
-      // Query Pinecone for relevant portfolio information
-      const queryResponse = await index.query({
-        // @ts-expect-error - lastMessage.content is an array of text parts
-        vector: await generateEmbedding(lastMessage.content.at(0)?.text ?? ""),
-        topK: 5,
-        includeMetadata: true,
-      })
-
-      // Extract context from Pinecone results
-      context = queryResponse.matches
-        .map((match) => match.metadata?.text)
-        .filter(Boolean)
-        .join("\n\n")
-
-      console.log("Context:", context)
+    if (messages.at(-1)) {
+      const textPart = messages
+        .at(-1)
+        ?.parts.find((part) => part.type === "text")
+      context = await findRelevantChunks(textPart?.text ?? "")
     }
 
     // Create system prompt with retrieved context
@@ -52,8 +29,7 @@ export async function POST(req: NextRequest) {
     const result = streamText({
       model: google(MODEL_NAME),
       system: systemPrompt,
-      messages: modelMessages,
-      temperature: 0.7,
+      messages: convertToModelMessages(messages),
     })
 
     return result.toUIMessageStreamResponse()

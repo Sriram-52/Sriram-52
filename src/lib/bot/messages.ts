@@ -1,19 +1,19 @@
 import { UIMessage } from "ai"
-import { initializeApp, credential, apps, firestore } from "firebase-admin"
+import * as admin from "firebase-admin"
 
-if (!apps.length) {
-  initializeApp({
-    credential: credential.cert(
+if (!admin.apps.length) {
+  admin.initializeApp({
+    credential: admin.credential.cert(
       JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY!),
     ),
   })
+  admin.firestore().settings({ ignoreUndefinedProperties: true })
 }
 
 export async function saveChatHistoryToDb(messages: UIMessage[], id: string) {
   try {
     console.log("Saving chat history to database:", id)
-    const db = firestore()
-    const chatRef = db.collection("chats").doc(id)
+    const chatRef = admin.firestore().collection("chats").doc(id)
     await chatRef.set({ messages })
     console.log("Chat history saved to database:", id)
   } catch (error) {

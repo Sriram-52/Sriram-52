@@ -55,79 +55,79 @@ const projects = [
   {
     title: "Secure Chat Application",
     blurb:
-      "Real-time messaging app with military-grade RSA encryption. Built with React and TypeScript to ensure zero data leaks while maintaining seamless user experience.",
+      "Real-time messaging app implementing RSA encryption for secure communication. Built with React and TypeScript to explore cryptography concepts and learn about secure messaging protocols.",
     stack: ["React", "TypeScript", "RSA Encryption", "Real-time"],
     links: {
       code: "https://github.com/Sriram-52/secure-chat",
     },
   },
   {
-    title: "Enterprise RBAC System",
+    title: "RBAC Learning Project",
     blurb:
-      "Full-stack role-based access control platform. NestJS backend with React frontend enabling granular permissions and microservices-ready architecture.",
+      "Role-based access control system built with NestJS and React. A learning project exploring authentication, authorization patterns, and API security concepts.",
     stack: ["NestJS", "React", "TypeScript"],
     links: {
       code: "https://github.com/Sriram-52/nest-react-rbac",
     },
   },
   {
-    title: "Scalable Quiz Platform",
+    title: "Quiz Application",
     blurb:
-      "High-performance educational platform built with Spring Boot microservices. Docker containerization ensures 99.9% uptime and horizontal scaling.",
+      "Educational quiz platform built with Spring Boot and PostgreSQL. Containerized with Docker to learn about deployment and backend development with Java.",
     stack: ["Spring Boot", "Java", "PostgreSQL", "Docker"],
     links: {
       code: "https://github.com/Sriram-52/quiz-app-spring-boot",
     },
   },
   {
-    title: "AI Integration Toolkit",
+    title: "OpenAI Starter Template",
     blurb:
-      "Production-ready TypeScript starter for OpenAI applications. Modular architecture with best practices for building intelligent, AI-powered products.",
+      "TypeScript starter project for OpenAI API integration. Basic template with examples for learning how to work with AI APIs and building simple AI-powered applications.",
     stack: ["TypeScript", "OpenAI API", "Node.js", "AI"],
     links: {
       code: "https://github.com/Sriram-52/openai-starter",
     },
   },
   {
-    title: "Cross-Platform Todo App",
+    title: "Flutter Todo App",
     blurb:
-      "Feature-rich mobile app showcasing Flutter + Redux state management. Demonstrates advanced mobile UI/UX patterns and reliable offline-first architecture.",
+      "Mobile todo application built with Flutter and Dart. A learning project to explore mobile development, state management patterns, and cross-platform app development.",
     stack: ["Flutter", "Dart", "Redux", "Mobile"],
     links: {
       code: "https://github.com/Sriram-52/Flutter_todo_list",
     },
   },
   {
-    title: "AI Disease Detection",
+    title: "Cotton Disease Detection",
     blurb:
-      "Computer vision model for agricultural disease identification. High-accuracy ML classification system helping farmers detect cotton leaf diseases early.",
+      "Machine learning project for identifying cotton leaf diseases using computer vision. Built with Python and Jupyter notebooks to learn about image classification and ML workflows.",
     stack: ["Python", "Jupyter", "Computer Vision", "ML"],
     links: {
       code: "https://github.com/Sriram-52/cotton-leaf-disease-detection",
     },
   },
   {
-    title: "Real-Time Social Connect",
+    title: "Social Connect App",
     blurb:
-      "Instant networking mobile app built with TypeScript. Cross-platform solution enabling seamless user discovery and real-time connections.",
+      "Mobile networking application built with TypeScript. A project exploring real-time communication features and mobile app development concepts.",
     stack: ["TypeScript", "Mobile", "Real-time", "Networking"],
     links: {
       code: "https://github.com/Sriram-52/instant-connect",
     },
   },
   {
-    title: "Smart SMS Processor",
+    title: "SMS Listener App",
     blurb:
-      "Android automation app for intelligent SMS handling. Native Java implementation with robust message processing and Android SDK integration.",
+      "Android application for SMS processing and automation. Built with Java to learn about Android development, SMS APIs, and mobile background services.",
     stack: ["Java", "Android", "SMS API", "Mobile"],
     links: {
       code: "https://github.com/Sriram-52/sms-listener",
     },
   },
   {
-    title: "Modern Portfolio Site",
+    title: "Portfolio Website",
     blurb:
-      "This responsive portfolio built with Next.js 15 and TypeScript. Features dark mode, elegant animations, gradient effects, and optimized performance with automated deployment.",
+      "This responsive portfolio built with Next.js 15 and TypeScript. Includes features like dark mode, animations, and an AI chatbot to showcase modern web development skills.",
     stack: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel"],
     links: {
       code: "https://github.com/Sriram-52/Sriram-52",

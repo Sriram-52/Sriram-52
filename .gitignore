@@ -37,3 +37,6 @@ next-env.d.ts
 
 # scripts
 scripts/portfolio-content.json
+
+# firebase service account
+service-account.json

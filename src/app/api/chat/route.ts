@@ -3,12 +3,17 @@ import { NextRequest } from "next/server"
 import { SYSTEM_PROMPT } from "@/lib/bot/prompt"
 import { findRelevantChunks } from "@/lib/bot/embeddings"
 import { google } from "@ai-sdk/google"
+import { saveChatHistoryToDb } from "@/lib/bot/messages"
+import { after } from "next/server"
+
+export const maxDuration = 30
 
 const MODEL_NAME = process.env.MODEL_NAME || "gemini-2.0-flash"
 
 export async function POST(req: NextRequest) {
   try {
-    const { messages }: { messages: UIMessage[] } = await req.json()
+    const { messages, id }: { messages: UIMessage[]; id: string } =
+      await req.json()
 
     // Query Pinecone for relevant portfolio information
     let context = ""
@@ -32,7 +37,12 @@ export async function POST(req: NextRequest) {
       messages: convertToModelMessages(messages),
     })
 
-    return result.toUIMessageStreamResponse()
+    return result.toUIMessageStreamResponse({
+      originalMessages: messages,
+      onFinish({ messages }) {
+        after(saveChatHistoryToDb(messages, id))
+      },
+    })
   } catch (error) {
     console.error("Chat API error:", error)
     return new Response(

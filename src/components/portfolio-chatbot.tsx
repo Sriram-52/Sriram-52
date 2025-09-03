@@ -16,6 +16,7 @@ import {
 import { cn } from "@/lib/utils"
 import { DefaultChatTransport, UIMessage } from "ai"
 import { MessageFormatter } from "./message-formatter"
+import { useRouter, usePathname } from "next/navigation"
 
 const initialMessages: UIMessage[] = [
   {
@@ -31,11 +32,17 @@ const initialMessages: UIMessage[] = [
 ]
 
 export function PortfolioChatbot() {
+  const router = useRouter()
+  const pathname = usePathname()
   const [isOpen, setIsOpen] = useState(false)
   const [isMinimized, setIsMinimized] = useState(false)
   const [hasShownInitialPopup, setHasShownInitialPopup] = useState(false)
   const [input, setInput] = useState("")
+  const [isMobile, setIsMobile] = useState(false)
+
   const messagesEndRef = useRef<HTMLDivElement>(null)
+  const inputRef = useRef<HTMLInputElement>(null)
+  const chatWindowRef = useRef<HTMLDivElement>(null)
 
   const { messages, sendMessage, status } = useChat({
     transport: new DefaultChatTransport({
@@ -49,8 +56,27 @@ export function PortfolioChatbot() {
     if (input.trim()) {
       sendMessage({ text: input.trim() })
       setInput("")
+
+      // Keep focus on input for better mobile UX
+      if (isMobile) {
+        setTimeout(() => {
+          inputRef.current?.focus()
+        }, 100)
+      }
     }
   }
+
+  // Mobile detection and viewport handling
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+
+    checkMobile()
+    window.addEventListener("resize", checkMobile)
+
+    return () => window.removeEventListener("resize", checkMobile)
+  }, [])
 
   // Show subtle hints for each session
   useEffect(() => {
@@ -76,12 +102,25 @@ export function PortfolioChatbot() {
   }, [messages])
 
   const toggleChat = () => {
+    // Hide hints immediately when user interacts with the chat
+    setHasShownInitialPopup(true)
+    sessionStorage.setItem("portfolio-chatbot-hint-shown", "true")
+
+    // On mobile, route to dedicated chat page
+    if (isMobile) {
+      router.push("/chat")
+      return
+    }
+
+    // On desktop, use dialog
     setIsOpen(!isOpen)
     setIsMinimized(false)
-    // Hide hints immediately when user interacts with the chat
+
     if (!isOpen) {
-      setHasShownInitialPopup(true)
-      sessionStorage.setItem("portfolio-chatbot-hint-shown", "true")
+      // Auto-focus input on desktop when opening chat
+      setTimeout(() => {
+        inputRef.current?.focus()
+      }, 300) // Wait for animation to complete
     }
   }
 
@@ -93,24 +132,44 @@ export function PortfolioChatbot() {
     setIsMinimized(false)
   }
 
+  // Don't show chatbot on chat page
+  if (pathname === "/chat") {
+    return null
+  }
+
   return (
     <>
       {/* Floating Chat Button */}
       {!isOpen && (
-        <div className="fixed bottom-6 right-6 z-50">
+        <div
+          className={cn(
+            "fixed z-50",
+            isMobile ? "bottom-6 right-4" : "bottom-6 right-6",
+          )}
+          style={
+            isMobile
+              ? {
+                  bottom: `max(24px, calc(24px + env(safe-area-inset-bottom)))`,
+                  right: `max(16px, calc(16px + env(safe-area-inset-right)))`,
+                }
+              : undefined
+          }
+        >
           <Button
             onClick={toggleChat}
             className={cn(
-              "h-14 w-14 rounded-full relative",
+              "rounded-full relative",
               "bg-gradient-brand text-white shadow-elegant",
               "transition-all duration-300 hover:scale-110 hover:shadow-glow",
               "glow-on-hover pulse-glow",
+              "touch-manipulation select-none-mobile",
               !hasShownInitialPopup && "animate-pulse",
+              isMobile ? "h-16 w-16" : "h-14 w-14",
             )}
             aria-label="Open portfolio assistant - Ask me about Ram's skills and experience"
             title="Portfolio Assistant"
           >
-            <MessageCircle className="h-6 w-6" />
+            <MessageCircle className={cn(isMobile ? "h-7 w-7" : "h-6 w-6")} />
             {/* Subtle hint indicator for first-time visitors */}
             {!hasShownInitialPopup && !isOpen && (
               <div className="absolute -top-1 -right-1 h-4 w-4 bg-yellow-400 rounded-full animate-ping" />
@@ -118,29 +177,44 @@ export function PortfolioChatbot() {
           </Button>
           {/* Optional tooltip hint that appears briefly */}
           {!hasShownInitialPopup && !isOpen && (
-            <div className="absolute bottom-16 right-0 bg-white dark:bg-gray-900 text-gray-900 dark:text-white px-3 py-2 rounded-lg shadow-lg text-sm whitespace-nowrap border animate-fade-in pointer-events-none">
+            <div
+              className={cn(
+                "absolute bg-white dark:bg-gray-900 text-gray-900 dark:text-white px-3 py-2 rounded-lg shadow-lg text-sm border animate-fade-in pointer-events-none",
+                isMobile
+                  ? "bottom-20 right-0 max-w-[200px] text-center"
+                  : "bottom-16 right-0 whitespace-nowrap",
+              )}
+            >
               💬 Ask me about Ram&apos;s experience!
-              <div className="absolute top-full right-4 border-4 border-transparent border-t-white dark:border-t-gray-900"></div>
+              <div
+                className={cn(
+                  "absolute border-4 border-transparent border-t-white dark:border-t-gray-900",
+                  isMobile
+                    ? "top-full right-1/2 transform -translate-x-1/2"
+                    : "top-full right-4",
+                )}
+              ></div>
             </div>
           )}
         </div>
       )}
 
-      {/* Chat Window */}
-      {isOpen && (
+      {/* Chat Window - Desktop Only */}
+      {isOpen && !isMobile && (
         <Card
+          ref={chatWindowRef}
           className={cn(
-            "fixed bottom-6 right-6 z-50 shadow-elegant hover:shadow-glow border transition-all duration-300 flex flex-col",
-            "backdrop-blur-xl bg-background/95 border-primary/20 animate-slide-up",
+            "fixed z-50 shadow-elegant hover:shadow-glow border transition-all duration-300 flex flex-col",
+            "backdrop-blur-xl bg-background/95 border-primary/20 animate-slide-up rounded-lg",
             isMinimized
-              ? "w-80 h-16"
-              : "w-[26rem] h-[32rem] md:w-[32rem] md:h-[40rem]",
+              ? "bottom-6 right-6 w-80 h-16"
+              : "bottom-6 right-6 w-[26rem] h-[32rem] md:w-[32rem] md:h-[40rem]",
           )}
         >
           {/* Header */}
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3 bg-gradient-brand text-white rounded-t-lg flex-shrink-0 shadow-lg">
-            <CardTitle className="text-sm font-medium flex items-center gap-2">
-              <Bot className="h-4 w-4 animate-pulse" />
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 bg-gradient-brand text-white flex-shrink-0 shadow-lg pb-3 rounded-t-lg">
+            <CardTitle className="font-medium flex items-center gap-2 text-sm">
+              <Bot className="animate-pulse h-4 w-4" />
               Portfolio Assistant
             </CardTitle>
             <div className="flex items-center gap-1">
@@ -148,7 +222,7 @@ export function PortfolioChatbot() {
                 variant="ghost"
                 size="sm"
                 onClick={isMinimized ? maximizeChat : minimizeChat}
-                className="h-8 w-8 p-0 hover:bg-white/20 text-white transition-all duration-200 hover:scale-110"
+                className="p-0 hover:bg-white/20 text-white transition-all duration-200 hover:scale-110 h-8 w-8"
                 aria-label={isMinimized ? "Maximize chat" : "Minimize chat"}
               >
                 {isMinimized ? (
@@ -161,7 +235,7 @@ export function PortfolioChatbot() {
                 variant="ghost"
                 size="sm"
                 onClick={toggleChat}
-                className="h-8 w-8 p-0 hover:bg-white/20 text-white transition-all duration-200 hover:scale-110"
+                className="p-0 hover:bg-white/20 text-white transition-all duration-200 hover:scale-110 h-8 w-8"
                 aria-label="Close chat"
               >
                 <X className="h-4 w-4" />
@@ -172,23 +246,23 @@ export function PortfolioChatbot() {
           {!isMinimized && (
             <>
               {/* Messages */}
-              <CardContent className="flex-1 overflow-y-auto p-4 space-y-4 min-h-0">
+              <CardContent className="p-4 flex-1 min-h-0 overflow-y-auto space-y-3">
                 {messages.map((message) => (
                   <div
                     key={message.id}
                     className={cn(
-                      "flex gap-3 text-sm",
+                      "flex text-sm gap-3",
                       message.role === "user" ? "justify-end" : "justify-start",
                     )}
                   >
                     {message.role === "assistant" && (
                       <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-brand shadow-elegant flex items-center justify-center animate-pulse">
-                        <Bot className="h-4 w-4 text-white" />
+                        <Bot className="text-white h-4 w-4" />
                       </div>
                     )}
                     <div
                       className={cn(
-                        "max-w-[75%] px-3 py-2 rounded-lg shadow-sm transition-all duration-200",
+                        "px-3 py-2 rounded-lg shadow-sm transition-all duration-200 max-w-[75%]",
                         message.role === "user"
                           ? "bg-gradient-brand text-white ml-auto hover:shadow-glow"
                           : "bg-muted/70 backdrop-blur-sm hover:bg-muted",
@@ -214,7 +288,7 @@ export function PortfolioChatbot() {
                     </div>
                     {message.role === "user" && (
                       <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-brand shadow-elegant flex items-center justify-center">
-                        <User className="h-4 w-4 text-white" />
+                        <User className="text-white h-4 w-4" />
                       </div>
                     )}
                   </div>
@@ -223,9 +297,9 @@ export function PortfolioChatbot() {
                 {/* Typing indicator */}
                 {(status === "submitted" || status === "streaming") &&
                   status === "submitted" && (
-                    <div className="flex gap-3 text-sm justify-start animate-slide-up">
+                    <div className="flex text-sm justify-start animate-slide-up gap-3">
                       <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-brand shadow-elegant flex items-center justify-center animate-pulse">
-                        <Bot className="h-4 w-4 text-white" />
+                        <Bot className="text-white h-4 w-4" />
                       </div>
                       <div className="bg-muted/70 backdrop-blur-sm text-muted-foreground px-3 py-2 rounded-lg shadow-sm">
                         <div className="flex space-x-1">
@@ -240,20 +314,25 @@ export function PortfolioChatbot() {
               </CardContent>
 
               {/* Input */}
-              <div className="p-4 border-t border-primary/10 flex-shrink-0 bg-muted/20 backdrop-blur-sm">
+              <div className="border-t border-primary/10 bg-muted/20 backdrop-blur-sm flex-shrink-0 p-4">
                 <form onSubmit={handleSubmit} className="flex gap-2">
                   <input
+                    ref={inputRef}
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     placeholder="Ask about Ram's experience..."
-                    className="flex-1 px-3 py-2 text-sm border border-primary/20 rounded-md bg-background/80 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/30 transition-all duration-200 hover:bg-background"
+                    className="flex-1 border border-primary/20 rounded-lg bg-background/80 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/30 transition-all duration-200 hover:bg-background px-3 py-2 text-sm"
                     disabled={status !== "ready"}
+                    autoComplete="off"
+                    autoCorrect="off"
+                    autoCapitalize="off"
+                    spellCheck="false"
                   />
                   <Button
                     type="submit"
                     size="sm"
                     disabled={status !== "ready" || !input.trim()}
-                    className="px-3 bg-gradient-brand text-white hover:shadow-glow transition-all duration-200 hover:scale-105 disabled:opacity-50 disabled:hover:scale-100"
+                    className="bg-gradient-brand text-white hover:shadow-glow transition-all duration-200 hover:scale-105 disabled:opacity-50 disabled:hover:scale-100 px-3"
                   >
                     <Send className="h-4 w-4" />
                   </Button>

@@ -5,6 +5,7 @@ import { findRelevantChunks } from "@/lib/bot/embeddings"
 import { google } from "@ai-sdk/google"
 import { saveChatHistoryToDb } from "@/lib/bot/messages"
 import { after } from "next/server"
+import { checkRatelimit } from "@/lib/rate-limit"
 
 export const maxDuration = 30
 
@@ -12,6 +13,12 @@ const MODEL_NAME = process.env.MODEL_NAME || "gemini-2.0-flash"
 
 export async function POST(req: NextRequest) {
   try {
+    const { success } = await checkRatelimit()
+
+    if (!success) {
+      return Response.json({ error: "Rate limit exceeded" }, { status: 429 })
+    }
+
     const { messages, id }: { messages: UIMessage[]; id: string } =
       await req.json()
 

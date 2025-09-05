@@ -1,7 +1,8 @@
 import type { NextRequest } from "next/server"
-import { z } from 'zod/v3';
+import { z } from "zod/v3"
 import FormData from "form-data"
 import Mailgun from "mailgun.js"
+import { checkRatelimit } from "@/lib/rate-limit"
 
 export const runtime = "nodejs"
 
@@ -17,7 +18,7 @@ function escapeHtml(input: string): string {
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
+    .replace(/'/g, "&#039;")
 }
 
 function requiredEnv(name: string): string {
@@ -30,6 +31,12 @@ function requiredEnv(name: string): string {
 
 export async function POST(req: NextRequest) {
   try {
+    const { success } = await checkRatelimit()
+
+    if (!success) {
+      return Response.json({ error: "Rate limit exceeded" }, { status: 429 })
+    }
+
     const body = contactSchema.safeParse(await req.json())
     if (!body.success) {
       return Response.json({ error: body.error.message }, { status: 400 })

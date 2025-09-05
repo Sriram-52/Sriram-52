@@ -6,52 +6,46 @@ import { PortfolioChatbot } from "@/components/portfolio-chatbot"
 import { resumeInfo } from "@/lib/resume"
 
 export const metadata: Metadata = {
-  title: "Sri Ram Mohan Nyshadham | Senior Full Stack Developer (Web & Mobile)",
+  title: "Sri Ram Mohan Nyshadham (Ram) | Dev Portfolio: Web, Mobile & AI",
   description:
-    "Senior Full-Stack Developer with 5+ years of experience building scalable, high-performance web and mobile applications using React, Next.js, React Native, NestJS, Prisma, and GCP serverless solutions. Expert in delivering cost-optimized, secure, and user-focused products.",
+    "Explore my projects in AI, mobile-first apps, and cloud tooling—all built with code and curiosity by Ram.",
   keywords: [
     "Sri Ram Mohan Nyshadham",
-    "Full Stack Developer",
-    "Mobile App Developer",
-    "React Developer",
-    "Next.js Developer",
-    "NestJS Developer",
-    "React Native Developer",
-    "TypeScript Developer",
-    "GCP Developer",
-    "Web and Mobile Developer",
-    "Senior Software Engineer",
-    "Portfolio",
+    "Ram developer",
+    "Full Stack Portfolio",
+    "AI Chatbot Developer",
+    "React Native",
+    "Next.js",
+    "NestJS",
+    "Cloud Tools",
   ],
   openGraph: {
-    title:
-      "Sri Ram Mohan Nyshadham | Senior Full Stack Developer (Web & Mobile)",
+    title: "Sri Ram Mohan Nyshadham | Full Stack Dev Portfolio",
     description:
-      "Building scalable, secure, and high-performance web & mobile applications using React, Next.js, NestJS, Prisma, and GCP.",
+      "A showcase of web, mobile, and AI projects built by Ram. Dive into creative code and cloud tools.",
     url: resumeInfo.portfolio,
-    siteName: "Sri Ram Mohan Nyshadham Portfolio",
+    siteName: "Ram's Portfolio",
     images: [
       {
         url: "https://sv2ux2zlpqtgqq1k.public.blob.vercel-storage.com/Sriram_OG-min.png",
         width: 1200,
         height: 630,
-        alt: "Sri Ram Mohan Nyshadham Portfolio Preview",
+        alt: "Portfolio preview: Sri Ram Mohan Nyshadham",
       },
     ],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title:
-      "Sri Ram Mohan Nyshadham | Senior Full Stack Developer (Web & Mobile)",
+    title: "Sri Ram Mohan Nyshadham | Web, Mobile & AI",
     description:
-      "Scalable web & mobile apps with React, Next.js, NestJS, Prisma, and GCP. 5+ years experience delivering secure, cost-optimized solutions.",
+      "AI bots • Mobile apps • Cloud tools—all built by Ram. Explore the code and creativity.",
     images: [
       {
         url: "https://sv2ux2zlpqtgqq1k.public.blob.vercel-storage.com/Sriram_OG-min.png",
         width: 1200,
         height: 630,
-        alt: "Sri Ram Mohan Nyshadham Portfolio Preview",
+        alt: "Portfolio preview: Sri Ram Mohan Nyshadham",
       },
     ],
   },

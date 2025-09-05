@@ -78,6 +78,11 @@ export function PortfolioChatbot() {
     return () => window.removeEventListener("resize", checkMobile)
   }, [])
 
+  // Prefetch /chat route for better performance
+  useEffect(() => {
+    router.prefetch("/chat")
+  }, [router])
+
   // Show subtle hints for each session
   useEffect(() => {
     const hasSeenHintThisSession = sessionStorage.getItem(
@@ -157,6 +162,7 @@ export function PortfolioChatbot() {
         >
           <Button
             onClick={toggleChat}
+            onMouseEnter={() => router.prefetch("/chat")}
             className={cn(
               "rounded-full relative",
               "bg-gradient-brand text-white shadow-elegant",

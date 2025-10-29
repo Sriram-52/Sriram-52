@@ -329,10 +329,7 @@ export function PortfolioChatbot() {
                     placeholder="Ask about Ram's experience..."
                     className="flex-1 border border-primary/20 rounded-lg bg-background/80 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/30 transition-all duration-200 hover:bg-background px-3 py-2 text-sm"
                     disabled={status !== "ready"}
-                    autoComplete="off"
-                    autoCorrect="off"
-                    autoCapitalize="off"
-                    spellCheck="false"
+                    autoFocus
                   />
                   <Button
                     type="submit"

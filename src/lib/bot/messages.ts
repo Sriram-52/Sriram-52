@@ -14,7 +14,7 @@ export async function saveChatHistoryToDb(messages: UIMessage[], id: string) {
   try {
     console.log("Saving chat history to database:", id)
     const chatRef = admin.firestore().collection("chats").doc(id)
-    await chatRef.set({ messages })
+    await chatRef.set({ messages, timestamp: new Date().toISOString() })
     console.log("Chat history saved to database:", id)
   } catch (error) {
     console.error("Error saving chat history to database:", error)

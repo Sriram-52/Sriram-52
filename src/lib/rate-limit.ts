@@ -10,9 +10,14 @@ const ratelimit = new Ratelimit({
 })
 
 export const checkRatelimit = async () => {
-  const ip = (await headers()).get("x-forwarded-for") || "127.0.0.1"
-  const result = await ratelimit.limit(ip)
-  return result
+  try {
+    const ip = (await headers()).get("x-forwarded-for") || "127.0.0.1"
+    const result = await ratelimit.limit(ip)
+    return result.success
+  } catch (error) {
+    console.error("Error checking ratelimit:", error)
+    return true
+  }
 }
 
-export type RatelimitResponse = Awaited<ReturnType<Ratelimit["limit"]>>
+export type RatelimitResponse = boolean

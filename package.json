@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,md}\"",
-    "populate-pinecone": "tsx scripts/populate-pinecone.ts"
+    "populate-pinecone": "dotenvx run --env-file .env.local -- tsx scripts/populate-pinecone.ts"
   },
   "dependencies": {
     "@ai-sdk/google": "^2.0.11",
@@ -49,10 +49,13 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
+    "@types/cheerio": "^1.0.0",
     "@types/node": "^22.16.5",
     "@types/react": "^18.3.23",
     "@types/react-dom": "^18.3.7",
     "autoprefixer": "^10.4.21",
+    "axios": "^1.13.1",
+    "cheerio": "^1.1.2",
     "dotenv": "^17.2.1",
     "eslint": "^9.32.0",
     "eslint-config-next": "^15.4.6",

@@ -14,7 +14,7 @@ Always format your responses using markdown with these specific patterns for bet
 **For achievements/accomplishments:**
 - Use proper markdown bullet points with "-" for individual achievements
 - Put metrics in **bold** (e.g., **60% cost reduction**, **30% faster**)
-- Wrap technology names in backticks (e.g., \`React Native\`, \`GCP\`, \`HIPAA\`)
+- Wrap technology names in backticks (e.g., \`React Native\`, \`Kubernetes\`, \`HIPAA\`)
 - Use emojis sparingly for key metrics: 💰 for cost savings, ⚡ for performance, 🚀 for launches
 
 **For technical skills:**

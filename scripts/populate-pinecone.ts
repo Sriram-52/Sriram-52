@@ -53,6 +53,136 @@ async function loadFromJSON(): Promise<Chunk[]> {
   return chunks
 }
 
+async function loadFromPDF(pdfPath: string): Promise<Chunk[]> {
+  console.log(`Loading resume content from PDF: ${pdfPath}`)
+
+  try {
+    // Dynamic import for pdf-parse to handle ESM compatibility
+    const { PDFParse } = await import("pdf-parse")
+
+    const dataBuffer = await fs.readFile(pdfPath)
+    // Convert Buffer to Uint8Array for PDFParse
+    const uint8Array = new Uint8Array(dataBuffer)
+
+    const pdfParse = new PDFParse({ data: uint8Array })
+    const textResult = await pdfParse.getText()
+    const text = textResult.text
+
+    // Clean up resources
+    await pdfParse.destroy()
+
+    if (!text || text.trim().length === 0) {
+      throw new Error("No text content found in PDF")
+    }
+
+    const chunks: Chunk[] = []
+    let chunkId = 1
+
+    // Helper function to extract text and create chunks
+    const addChunk = (
+      text: string,
+      section: string,
+      metadata: Record<string, string | string[] | boolean> = {},
+    ) => {
+      if (text && text.trim().length > 20) {
+        // Only add meaningful text chunks
+        chunks.push({
+          id: `resume-${section}-${chunkId++}`,
+          text: text.trim(),
+          metadata: { section, source: "resume", ...metadata },
+        })
+      }
+    }
+
+    // Split text into lines for processing
+    const lines = text
+      .split("\n")
+      .map((line: string) => line.trim())
+      .filter(Boolean)
+
+    let currentSection = "general"
+    let currentContent: string[] = []
+
+    // Common resume section headers (case-insensitive matching)
+    const sectionHeaders = [
+      /^(experience|work experience|employment|work history)/i,
+      /^(education|academic background|academic)/i,
+      /^(skills|technical skills|competencies)/i,
+      /^(projects|project experience)/i,
+      /^(certifications|certificates)/i,
+      /^(summary|professional summary|about|objective)/i,
+      /^(contact|contact information)/i,
+      /^(achievements|awards|honors)/i,
+    ]
+
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i]
+      let isSectionHeader = false
+
+      // Check if this line is a section header
+      for (const pattern of sectionHeaders) {
+        if (pattern.test(line) && line.length < 50) {
+          // Save previous section content
+          if (currentContent.length > 0) {
+            const content = currentContent.join(" ").trim()
+            if (content) {
+              addChunk(content, currentSection, {})
+            }
+            currentContent = []
+          }
+
+          // Set new section
+          currentSection = line.toLowerCase().replace(/\s+/g, "-")
+          isSectionHeader = true
+          break
+        }
+      }
+
+      if (!isSectionHeader) {
+        currentContent.push(line)
+      }
+    }
+
+    // Add remaining content
+    if (currentContent.length > 0) {
+      const content = currentContent.join(" ").trim()
+      if (content) {
+        addChunk(content, currentSection, {})
+      }
+    }
+
+    // Also create chunks for individual bullet points and paragraphs
+    const paragraphs = text
+      .split(/\n\s*\n/)
+      .filter((p: string) => p.trim().length > 20)
+    for (const paragraph of paragraphs) {
+      const trimmed = paragraph.trim()
+      // Skip if it's likely a section header
+      if (
+        trimmed.length < 50 &&
+        sectionHeaders.some((pattern) => pattern.test(trimmed))
+      ) {
+        continue
+      }
+      addChunk(trimmed, "resume-content", {})
+    }
+
+    // Create chunks for bullet points (lines starting with •, -, *, etc.)
+    const bulletPoints = lines.filter(
+      (line: string) => /^[•\-\*]\s/.test(line) && line.length > 20,
+    )
+    for (const bullet of bulletPoints) {
+      addChunk(bullet.replace(/^[•\-\*]\s/, ""), "resume-bullet", {})
+    }
+
+    console.log(`✅ Extracted ${chunks.length} chunks from PDF resume`)
+    return chunks
+  } catch (error) {
+    console.error(`❌ Error loading PDF: ${error}`)
+    throw error
+  }
+}
+
 async function scrapeWebsite(url: string): Promise<Chunk[]> {
   console.log(`Fetching website content from: ${url}`)
   const response = await axios.get(url)
@@ -272,7 +402,7 @@ async function uploadChunksToPinecone(chunks: Chunk[]) {
 }
 
 async function populatePinecone() {
-  // Get the source: "json" or "website"
+  // Get the source: "json", "website", or "pdf"
   const source = process.env.DATA_SOURCE || "json"
   const deleteExisting = process.env.DELETE_EXISTING === "true"
 
@@ -294,8 +424,15 @@ async function populatePinecone() {
         "https://sriram-52.vercel.app"
       chunks = await scrapeWebsite(websiteUrl)
       console.log(`\nExtracted ${chunks.length} content chunks from website\n`)
+    } else if (source === "pdf") {
+      // Load from PDF file
+      const pdfPath = process.env.RESUME_PDF_PATH || "./out/resume.pdf"
+      chunks = await loadFromPDF(pdfPath)
+      console.log(
+        `\nExtracted ${chunks.length} content chunks from PDF resume\n`,
+      )
     } else {
-      // Load from JSON file
+      // Load from JSON file (default)
       chunks = await loadFromJSON()
       console.log(`\nLoaded ${chunks.length} content chunks from JSON\n`)
     }

@@ -38,8 +38,9 @@ const skills = {
     "Prisma",
     "PostgreSQL",
     "Firebase",
-    "GCP",
-    "Cloud Run",
+    "Cloud Native",
+    "Kubernetes",
+    "Serverless Containers",
   ],
   "AI & Security": [
     "OpenAI API",
@@ -323,8 +324,8 @@ export default function Page() {
               <CardContent className="space-y-2 text-sm">
                 <ul className="list-disc pl-5 space-y-2">
                   <li>
-                    <strong>Cost Optimization:</strong> Migrated GKE → Cloud Run
-                    microservices; reduced infra costs by 50%.
+                    <strong>Cost Optimization:</strong> Migrated Kubernetes → Serverless Containers
+                    microservices; reduced infrastructure costs by 50%.
                   </li>
                   <li>
                     <strong>Mobile Stack Leadership:</strong> Led Flutter →

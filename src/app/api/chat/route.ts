@@ -13,9 +13,9 @@ const MODEL_NAME = process.env.MODEL_NAME || "gemini-2.0-flash"
 
 export async function POST(req: NextRequest) {
   try {
-    const result = await checkRatelimit()
+    const ratelimitResult = await checkRatelimit()
 
-    if (!result) {
+    if (!ratelimitResult) {
       return Response.json({ error: "Rate limit exceeded" }, { status: 429 })
     }
 

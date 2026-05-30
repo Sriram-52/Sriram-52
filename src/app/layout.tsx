@@ -6,25 +6,35 @@ import { PortfolioChatbot } from "@/components/portfolio-chatbot"
 import { resumeInfo } from "@/lib/resume"
 
 export const metadata: Metadata = {
-  title: "Sri Ram Mohan Nyshadham (Ram) | Dev Portfolio: Web, Mobile & AI",
+  metadataBase: new URL(resumeInfo.portfolio),
+  alternates: {
+    canonical: "/",
+  },
+  title:
+    "Sriram Nyshadham | Full Stack Developer — Web, Mobile & AI Portfolio",
   description:
-    "Explore my projects in AI, mobile-first apps, and cloud tooling—all built with code and curiosity by Ram.",
+    "Sriram Nyshadham (Sri Ram Mohan Nyshadham) is a Full Stack Developer building scalable web, mobile, and AI applications. Explore his projects in AI, mobile-first apps, and cloud tooling.",
   keywords: [
+    "Sriram Nyshadham",
+    "Sriram Nyshadham portfolio",
+    "Sriram Nyshadham Full Stack Developer",
     "Sri Ram Mohan Nyshadham",
-    "Ram developer",
+    "Sriram Mohan Nyshadham",
+    "Sriram Nyshadham developer",
+    "Sriram developer",
     "Full Stack Portfolio",
-    "AI Chatbot Developer",
+    "Full Stack Developer",
     "React Native",
     "Next.js",
     "NestJS",
     "Cloud Tools",
   ],
   openGraph: {
-    title: "Sri Ram Mohan Nyshadham | Full Stack Dev Portfolio",
+    title: "Sriram Nyshadham | Full Stack Developer Portfolio",
     description:
-      "A showcase of web, mobile, and AI projects built by Ram. Dive into creative code and cloud tools.",
+      "A showcase of web, mobile, and AI projects built by Sriram. Dive into creative code and cloud tools.",
     url: resumeInfo.portfolio,
-    siteName: "Ram's Portfolio",
+    siteName: "Sriram's Portfolio",
     images: [
       {
         url: "https://sv2ux2zlpqtgqq1k.public.blob.vercel-storage.com/Sriram_OG-min.png",
@@ -37,9 +47,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sri Ram Mohan Nyshadham | Web, Mobile & AI",
+    title: "Sriram Nyshadham | Web, Mobile & AI",
     description:
-      "AI bots • Mobile apps • Cloud tools—all built by Ram. Explore the code and creativity.",
+      "AI bots • Mobile apps • Cloud tools—all built by Sriram. Explore the code and creativity.",
     images: [
       {
         url: "https://sv2ux2zlpqtgqq1k.public.blob.vercel-storage.com/Sriram_OG-min.png",
@@ -51,6 +61,24 @@ export const metadata: Metadata = {
   },
 }
 
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Sriram Nyshadham",
+  alternateName: ["Sri Ram Mohan Nyshadham", "Sriram Mohan Nyshadham"],
+  url: resumeInfo.portfolio,
+  image:
+    "https://sv2ux2zlpqtgqq1k.public.blob.vercel-storage.com/Sriram_OG-min.png",
+  jobTitle: "Full Stack Developer",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Marietta",
+    addressRegion: "GA",
+    addressCountry: "US",
+  },
+  sameAs: [resumeInfo.linkedIn, resumeInfo.github],
+}
+
 export default function RootLayout({
   children,
 }: {
@@ -59,6 +87,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="bg-background text-foreground">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
         <Providers>
           <Toaster />
           {children}

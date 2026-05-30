@@ -2,7 +2,6 @@ import {
   MapPin,
   Github,
   Linkedin,
-  Mail,
   Download,
   // ExternalLink,
 } from "lucide-react"
@@ -21,6 +20,7 @@ import { Separator } from "@/components/ui/separator"
 import { ContactForm } from "@/components/contact-form"
 import { Footer } from "@/components/footer"
 import { BackToTop } from "@/components/back-to-top"
+import { HeroChat } from "@/components/hero-chat"
 import { resumeInfo } from "@/lib/resume"
 
 const skills = {
@@ -29,27 +29,38 @@ const skills = {
     "Next.js",
     "React Native",
     "TypeScript",
-    "TailwindCSS",
-    "Material-UI",
+    "Redux",
+    "Zustand",
+    "Tailwind CSS",
   ],
-  "Backend & Cloud": [
-    "NestJS",
+  "Backend & APIs": [
     "Node.js",
-    "Prisma",
+    "NestJS",
+    "Express.js",
     "PostgreSQL",
+    "Firestore",
+    "Prisma",
+    "REST APIs",
+  ],
+  "Cloud & DevOps": [
+    "Cloud Run",
+    "GKE",
+    "Cloud SQL",
     "Firebase",
-    "Cloud Native",
-    "Kubernetes",
-    "Serverless Containers",
+    "GitHub Actions",
+    "Docker",
+    "CI/CD",
+    "Vercel",
   ],
-  "AI & Security": [
-    "OpenAI API",
-    "LangGraph",
-    "AI Agents",
-    "RSA Encryption",
-    "HIPAA Compliance",
+  "AI & Real-time": [
+    "LLMs",
+    "RAG",
+    "pgvector",
+    "Embeddings",
+    "WebSockets",
+    "Twilio",
+    "HIPAA",
   ],
-  DevOps: ["GitHub Actions", "Docker", "Turborepo", "Nx Monorepo", "CI/CD"],
 }
 
 const projects = [
@@ -169,98 +180,96 @@ export default function Page() {
             className="pointer-events-none absolute left-1/2 -translate-x-1/2 -top-20 h-64 w-screen bg-gradient-brand opacity-30 blur-3xl"
             aria-hidden="true"
           />
-          <div className="relative container mx-auto px-4 grid gap-6 md:grid-cols-[1.5fr_1fr] items-start animate-slide-up">
-            <div>
-              <h1 className="font-display text-3xl md:text-5xl font-extrabold tracking-tight leading-tight animate-slide-up stagger-1">
-                <span className="gradient-text">Hi, I&apos;m Ram!</span>
-              </h1>
-              <div className="mt-2 space-y-1">
-                <h2 className="font-display text-2xl md:text-4xl font-bold tracking-tight leading-tight animate-slide-up stagger-2">
-                  Senior Full Stack Developer
-                </h2>
-                <h3 className="font-display text-lg md:text-xl font-medium tracking-tight leading-tight text-muted-foreground animate-slide-up stagger-3">
-                  Web & Mobile Specialist
-                </h3>
-              </div>
-              <p className="mt-4 text-muted-foreground text-lg max-w-2xl animate-slide-up stagger-4">
-                Building scalable web and mobile applications with React,
-                TypeScript, and modern cloud architecture. Passionate about
-                creating efficient, secure, and user-focused solutions.
-              </p>
-              <div className="mt-4 flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
-                <span className="inline-flex items-center gap-1">
-                  <MapPin className="h-4 w-4" /> Marietta, GA
-                </span>
-                <a href="#contact" className="inline-flex items-center gap-1">
-                  <Mail className="h-4 w-4" />{" "}
-                  <span className="story-link">Contact below</span>
-                </a>
-                <a href="#contact" className="story-link">
-                  Available for opportunities
-                </a>
-              </div>
-              <div className="mt-6 flex items-center gap-3 animate-slide-up stagger-5">
-                <Button
-                  asChild
-                  variant="hero"
-                  className="hover-scale pulse-glow"
-                >
-                  <a href="#contact">Get in touch</a>
-                </Button>
-                <Button asChild variant="outline">
-                  <a href="#projects">View projects</a>
-                </Button>
-                <a
-                  aria-label="GitHub"
-                  href={resumeInfo.github}
-                  className="p-2 rounded-md border hover:bg-muted min-h-[44px] min-w-[44px] flex items-center justify-center glow-on-hover transition-all duration-300"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Github className="h-5 w-5 icon-bounce" />
-                </a>
-                <a
-                  aria-label="LinkedIn"
-                  href={resumeInfo.linkedIn}
-                  className="p-2 rounded-md border hover:bg-muted min-h-[44px] min-w-[44px] flex items-center justify-center glow-on-hover transition-all duration-300"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Linkedin className="h-5 w-5 icon-bounce" />
-                </a>
-              </div>
+          <div className="relative container mx-auto px-4 flex flex-col items-center text-center animate-slide-up">
+            <h1 className="font-display text-3xl md:text-5xl font-extrabold tracking-tight leading-tight animate-slide-up stagger-1">
+              <span className="gradient-text">Hi, I&apos;m Sriram!</span>
+            </h1>
+            <h2 className="mt-2 font-display text-2xl md:text-3xl font-bold tracking-tight leading-tight animate-slide-up stagger-2">
+              Full Stack Developer
+            </h2>
+            <p className="mt-4 text-muted-foreground text-lg max-w-2xl animate-slide-up stagger-3">
+              Building scalable cloud, web, and mobile applications with React,
+              TypeScript, and modern cloud architecture.
+            </p>
+            <div className="mt-3 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm text-muted-foreground animate-slide-up stagger-4">
+              <span className="inline-flex items-center gap-1">
+                <MapPin className="h-4 w-4" /> Marietta, GA
+              </span>
+              <a href="#contact" className="story-link">
+                Available for opportunities
+              </a>
             </div>
 
-            <Card
-              id="about"
-              className="shadow-elegant scroll-mt-24 animate-slide-up stagger-6 float"
-            >
-              <CardHeader>
-                <CardTitle>About Me</CardTitle>
-                <CardDescription>
-                  Impact-driven engineer focused on clarity, performance, and
-                  security.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="text-sm leading-relaxed space-y-3">
-                <p>
-                  Senior Full Stack Developer with 5+ years of experience
-                  building scalable web and mobile applications. Expert in
-                  modern TypeScript ecosystems including React, Next.js, NestJS,
-                  and Spring Boot. Proven track record in healthcare technology,
-                  AI integration, and enterprise security systems.
-                </p>
-                <p>
-                  Passionate about clean architecture, performance optimization,
-                  and security-first development. Successfully delivered 50+
-                  projects ranging from ML-powered applications to real-time
-                  chat systems with RSA encryption. Strong expertise in cloud
-                  platforms, mobile development (React Native, Flutter,
-                  Android), and modern DevOps practices.
-                </p>
-              </CardContent>
-            </Card>
+            {/* The chat is the hero */}
+            <div className="mt-8 w-full max-w-2xl text-left animate-slide-up stagger-5">
+              <HeroChat />
+            </div>
+
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-3 animate-slide-up stagger-6">
+              <Button asChild variant="hero" className="hover-scale pulse-glow">
+                <a href="#contact">Get in touch</a>
+              </Button>
+              <Button asChild variant="outline">
+                <a href="#projects">View projects</a>
+              </Button>
+              <a
+                aria-label="GitHub"
+                href={resumeInfo.github}
+                className="p-2 rounded-md border hover:bg-muted min-h-[44px] min-w-[44px] flex items-center justify-center glow-on-hover transition-all duration-300"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Github className="h-5 w-5 icon-bounce" />
+              </a>
+              <a
+                aria-label="LinkedIn"
+                href={resumeInfo.linkedIn}
+                className="p-2 rounded-md border hover:bg-muted min-h-[44px] min-w-[44px] flex items-center justify-center glow-on-hover transition-all duration-300"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Linkedin className="h-5 w-5 icon-bounce" />
+              </a>
+            </div>
           </div>
+        </section>
+
+        <Separator />
+
+        {/* About */}
+        <section
+          id="about"
+          className="container mx-auto px-4 py-12 md:py-16 scroll-mt-24"
+        >
+          <h2 className="font-display text-2xl md:text-3xl font-bold mb-8 animate-slide-up">
+            About
+          </h2>
+          <Card className="shadow-elegant animate-slide-up stagger-1">
+            <CardHeader>
+              <CardTitle>About Me</CardTitle>
+              <CardDescription>
+                Impact-driven engineer focused on clarity, performance, and
+                security.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="text-sm leading-relaxed space-y-3 max-w-3xl">
+              <p>
+                Full Stack Developer with 6+ years of experience building scalable
+                web and mobile applications. Expert in modern TypeScript
+                ecosystems including React, Next.js, NestJS, and Spring Boot.
+                Proven track record in healthcare technology, AI integration,
+                and enterprise security systems.
+              </p>
+              <p>
+                Passionate about clean architecture, performance optimization,
+                and security-first development. Successfully delivered 50+
+                projects ranging from ML-powered applications to real-time chat
+                systems with RSA encryption. Strong expertise in cloud
+                platforms, mobile development (React Native, Flutter, Android),
+                and modern DevOps practices.
+              </p>
+            </CardContent>
+          </Card>
         </section>
 
         <Separator />
@@ -318,30 +327,41 @@ export default function Page() {
                   </span>
                 </CardTitle>
                 <CardDescription>
-                  Senior Full Stack Developer - Healthcare Technology Platform
+                  Full Stack Developer - Healthcare Technology Platform
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-2 text-sm">
                 <ul className="list-disc pl-5 space-y-2">
                   <li>
-                    <strong>Cost Optimization:</strong> Migrated Kubernetes → Serverless Containers
-                    microservices; reduced infrastructure costs by 50%.
+                    <strong>Real-time Clinical AI:</strong> Streamed live
+                    doctor-patient sessions over native WebSockets with AI-driven
+                    clinical suggestions; shipped LLM chat, live scribe, and
+                    RAG-based documentation agents used daily in production.
                   </li>
                   <li>
-                    <strong>Mobile Stack Leadership:</strong> Led Flutter →
-                    React Native migration; built iHealth BLE SDK.
+                    <strong>AI Pipelines:</strong> Built prompt engineering,
+                    embeddings, and pgvector retrieval to orchestrate multi-step
+                    agentic reasoning, improving suggestion relevance.
                   </li>
                   <li>
-                    <strong>Monorepo & Type Safety:</strong> Introduced
-                    Turborepo, migrated JS → TS, used OpenAPI + Orval.
+                    <strong>Full-Stack & Mobile:</strong> Built HIPAA-compliant
+                    patient, doctor, and hospital portals with React, React
+                    Native, Node.js, and NestJS; led Flutter → React Native
+                    migration and shipped BLE-enabled apps to the App Store and
+                    Play Store.
                   </li>
                   <li>
-                    <strong>AI-Powered Experiences:</strong> Built
-                    LangGraph-based healthcare chatbots and Twilio integrations.
+                    <strong>Cloud & Cost Optimization:</strong> Migrated
+                    containerized microservices from GKE → Cloud Run, cutting
+                    infrastructure costs ~50%; deployed on Cloud Run, Firebase
+                    Hosting, Cloud IAM, and managed PostgreSQL with automated
+                    GitHub Actions CI/CD.
                   </li>
                   <li>
-                    <strong>DevOps Excellence:</strong> Automated CI/CD with
-                    GitHub Actions; ~30% faster releases.
+                    <strong>Reliability & Mentoring:</strong> Built
+                    fault-tolerant services (structured logging, retries,
+                    graceful degradation), tuned PostgreSQL for low-latency RAG,
+                    and mentored engineers on code review and CI/CD practices.
                   </li>
                 </ul>
               </CardContent>
@@ -350,7 +370,7 @@ export default function Page() {
             <Card className="animate-slide-up stagger-2 project-card">
               <CardHeader>
                 <CardTitle>
-                  Eficens Systems LLC{" "}
+                  Eficens Systems LLC (Flair Technologies){" "}
                   <span className="text-muted-foreground font-normal">
                     — Mar 2020 - May 2021
                   </span>
@@ -360,18 +380,26 @@ export default function Page() {
               <CardContent className="space-y-2 text-sm">
                 <ul className="list-disc pl-5 space-y-2">
                   <li>
-                    <strong>CRM Platform:</strong> Built comprehensive
-                    timesheet, payroll, and employee management system serving
-                    100+ consultants.
+                    <strong>CRM Platform:</strong> Engineered a full-scale CRM
+                    covering payroll, timesheets, placements, invoicing,
+                    onboarding, and document workflows with React, Material UI,
+                    Redux, and Firebase.
                   </li>
                   <li>
-                    <strong>Firebase Migration:</strong> Migrated legacy systems
-                    to Firebase backend with real-time data synchronization.
+                    <strong>Performance:</strong> Built 40+ reusable React
+                    components and cut UI load times by 30% via memoization and
+                    selector-based state management.
                   </li>
                   <li>
-                    <strong>RBAC Dashboards:</strong> Implemented role-based
-                    access control with AG Grid data visualization and Chart.js
-                    analytics.
+                    <strong>Backend & RBAC:</strong> Developed payroll, margin,
+                    and tax logic with Node.js, Express, and Firebase Cloud
+                    Functions; implemented secure RBAC with Firebase Auth and
+                    Firestore rules.
+                  </li>
+                  <li>
+                    <strong>Quality & CI/CD:</strong> Resolved 150+ production
+                    defects and enhanced CI/CD with Firebase Hosting and GitHub
+                    Actions across dev/stage/prod.
                   </li>
                 </ul>
               </CardContent>

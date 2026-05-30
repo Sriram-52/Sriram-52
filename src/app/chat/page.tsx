@@ -16,7 +16,7 @@ const initialMessages: UIMessage[] = [
     parts: [
       {
         type: "text",
-        text: "Hi 👋 I'm Ram's portfolio assistant. \nI can tell you about his skills, projects, and experience. \nTry asking: \"What's your biggest migration project?\"",
+        text: "Hi 👋 I'm Sriram's portfolio assistant. \nI can tell you about his skills, projects, and experience. \nTry asking: \"What's your biggest migration project?\"",
       },
     ],
   },
@@ -157,7 +157,7 @@ export default function ChatPage() {
             ref={inputRef}
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Ask about Ram..."
+            placeholder="Ask about Sriram..."
             className="flex-1 border border-primary/20 rounded-xl bg-background/80 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/30 transition-all duration-200 hover:bg-background px-4 py-3 text-base no-zoom-mobile"
             disabled={status !== "ready"}
             autoComplete="off"

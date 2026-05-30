@@ -25,7 +25,7 @@ const initialMessages: UIMessage[] = [
     parts: [
       {
         type: "text",
-        text: "Hi 👋 I'm Ram's portfolio assistant. \nI can tell you about his skills, projects, and experience. \nTry asking: “What's your biggest migration project?”",
+        text: "Hi 👋 I'm Sriram's portfolio assistant. \nI can tell you about his skills, projects, and experience. \nTry asking: “What's your biggest migration project?”",
       },
     ],
   },
@@ -172,7 +172,7 @@ export function PortfolioChatbot() {
               !hasShownInitialPopup && "animate-pulse",
               isMobile ? "h-16 w-16" : "h-14 w-14",
             )}
-            aria-label="Open portfolio assistant - Ask me about Ram's skills and experience"
+            aria-label="Open portfolio assistant - Ask me about Sriram's skills and experience"
             title="Portfolio Assistant"
           >
             <MessageCircle className={cn(isMobile ? "h-7 w-7" : "h-6 w-6")} />
@@ -191,7 +191,7 @@ export function PortfolioChatbot() {
                   : "bottom-16 right-0 whitespace-nowrap",
               )}
             >
-              💬 Ask me about Ram&apos;s experience!
+              💬 Ask me about Sriram&apos;s experience!
               <div
                 className={cn(
                   "absolute border-4 border-transparent border-t-white dark:border-t-gray-900",
@@ -326,7 +326,7 @@ export function PortfolioChatbot() {
                     ref={inputRef}
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
-                    placeholder="Ask about Ram's experience..."
+                    placeholder="Ask about Sriram's experience..."
                     className="flex-1 border border-primary/20 rounded-lg bg-background/80 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/30 transition-all duration-200 hover:bg-background px-3 py-2 text-sm"
                     disabled={status !== "ready"}
                     autoFocus

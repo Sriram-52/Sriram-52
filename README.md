@@ -1,10 +1,10 @@
-<h1 align="center">👋 Hey, I'm Ram</h1>
-<h3 align="center">Full Stack Developer • Web | Mobile | AI</h3>
+<h1 align="center">👋 Hey, I'm Sriram</h1>
+<h3 align="center">Full Stack Developer • Cloud | Web | Mobile | AI</h3>
 
 ---
 
 ## 🚀 About Me
-💡 Passionate Full Stack Developer exploring the intersection of **web, mobile, and AI**.
+💡 Passionate Developer exploring the intersection of **Cloud, Web, Mobile, and AI**.
 I love building things that make life easier—from scalable healthcare apps to playful AI chatbots.
 My GitHub is where I share **experiments, side projects, and tools** I've learned along the way.
 
@@ -19,35 +19,32 @@ My GitHub is where I share **experiments, side projects, and tools** I've learne
 
 <div align="center">
 
-**Frontend**
+**Frontend & Mobile**
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
-![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
-![Material-UI](https://img.shields.io/badge/Material--UI-0081CB?style=for-the-badge&logo=material-ui&logoColor=white)
-
-**Backend**
-![NestJS](https://img.shields.io/badge/NestJS-E0234E?style=for-the-badge&logo=nestjs&logoColor=white)
-![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
-![Prisma](https://img.shields.io/badge/Prisma-2D3748?style=for-the-badge&logo=prisma&logoColor=white)
-![REST API](https://img.shields.io/badge/REST-02569B?style=for-the-badge&logo=rest&logoColor=white)
-
-**Mobile**
 ![React Native](https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
-![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![Redux](https://img.shields.io/badge/Redux-764ABC?style=for-the-badge&logo=redux&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+
+**Backend & APIs**
+![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
+![NestJS](https://img.shields.io/badge/NestJS-E0234E?style=for-the-badge&logo=nestjs&logoColor=white)
+![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
+![Prisma](https://img.shields.io/badge/Prisma-2D3748?style=for-the-badge&logo=prisma&logoColor=white)
 
 **Cloud & DevOps**
-![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white)
+![Google Cloud](https://img.shields.io/badge/Google_Cloud-4285F4?style=for-the-badge&logo=google-cloud&logoColor=white)
+![Cloud Run](https://img.shields.io/badge/Cloud_Run-4285F4?style=for-the-badge&logo=google-cloud&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 ![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)
-![Turborepo](https://img.shields.io/badge/Turborepo-000000?style=for-the-badge&logo=turborepo&logoColor=white)
 
-**Other Tools**
-![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)
+**AI & Real-time**
+![LLMs](https://img.shields.io/badge/LLMs-412991?style=for-the-badge&logo=openai&logoColor=white)
+![RAG](https://img.shields.io/badge/RAG-FF6F00?style=for-the-badge&logoColor=white)
+![WebSockets](https://img.shields.io/badge/WebSockets-010101?style=for-the-badge&logo=socketdotio&logoColor=white)
 ![Twilio](https://img.shields.io/badge/Twilio-F22F46?style=for-the-badge&logo=twilio&logoColor=white)
-![OpenAPI](https://img.shields.io/badge/OpenAPI-6BA539?style=for-the-badge&logo=openapi-initiative&logoColor=white)
-![ZenStack](https://img.shields.io/badge/ZenStack-000000?style=for-the-badge&logoColor=white)
-![CASL](https://img.shields.io/badge/CASL-ff69b4?style=for-the-badge&logoColor=white)
 
 </div>
 
@@ -55,9 +52,9 @@ My GitHub is where I share **experiments, side projects, and tools** I've learne
 
 ## 🏆 Highlights
 
-✨ Migrated projects to **React Native** to explore cross-platform code sharing
-🤖 Tinkering with **LangGraph & AI SDKs** to build fun assistants
-⚡ Love simplifying dev workflows with **monorepos & CI/CD pipelines**
+✨ Led a **Flutter → React Native** migration for faster cross-platform delivery
+🤖 Build **real-time AI** features — LLM chat, live scribe & RAG agents in production
+☁️ Ship cloud-native apps on **Google Cloud** (Cloud Run, GKE) with automated CI/CD
 🛠️ Always experimenting & sharing learnings through code
 
 ---

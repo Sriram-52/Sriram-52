@@ -369,6 +369,29 @@ async function scrapeWebsite(url: string): Promise<Chunk[]> {
   return chunks
 }
 
+// generateEmbedding returns an all-zero vector when the embedding call fails
+// (e.g. Vertex quota 429). Pinecone rejects zero vectors, so treat that as a
+// retryable failure with backoff — the gemini-embedding model has a low
+// per-minute quota on new projects, and bursts need spacing out.
+function isZeroVector(values: number[]): boolean {
+  return values.every((v) => v === 0)
+}
+
+async function embedWithRetry(text: string, maxAttempts = 6): Promise<number[]> {
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    const embedding = await generateEmbedding(text)
+    if (!isZeroVector(embedding)) return embedding
+    const waitMs = Math.min(3000 * attempt, 20000)
+    console.log(
+      `   ⏳ embedding unavailable (likely quota) — retry ${attempt}/${maxAttempts} in ${waitMs}ms`,
+    )
+    await new Promise((resolve) => setTimeout(resolve, waitMs))
+  }
+  throw new Error(
+    "Failed to generate a valid (non-zero) embedding after retries",
+  )
+}
+
 async function uploadChunksToPinecone(chunks: Chunk[]) {
   console.log(`\nUploading ${chunks.length} chunks to Pinecone...\n`)
 
@@ -376,7 +399,7 @@ async function uploadChunksToPinecone(chunks: Chunk[]) {
     try {
       console.log(`Processing: ${item.id}`)
 
-      const embedding = await generateEmbedding(item.text)
+      const embedding = await embedWithRetry(item.text)
 
       const metadata = {
         text: item.text,
@@ -393,8 +416,8 @@ async function uploadChunksToPinecone(chunks: Chunk[]) {
 
       console.log(`✅ Uploaded: ${item.id}`)
 
-      // Small delay to avoid rate limits
-      await new Promise((resolve) => setTimeout(resolve, 100))
+      // Space out requests to respect the Vertex embedding per-minute quota
+      await new Promise((resolve) => setTimeout(resolve, 1500))
     } catch (error) {
       console.error(`❌ Error processing ${item.id}:`, error)
     }

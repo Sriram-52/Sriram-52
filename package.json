@@ -11,7 +11,7 @@
     "populate-pinecone": "dotenvx run --env-file .env.local -- tsx scripts/populate-pinecone.ts"
   },
   "dependencies": {
-    "@ai-sdk/google": "^2.0.11",
+    "@ai-sdk/google-vertex": "^3.0.140",
     "@ai-sdk/react": "^2.0.29",
     "@google/genai": "^1.16.0",
     "@hookform/resolvers": "^3.10.0",

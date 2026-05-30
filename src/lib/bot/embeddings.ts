@@ -1,5 +1,6 @@
 import { GoogleGenAI } from "@google/genai"
 import { Pinecone } from "@pinecone-database/pinecone"
+import { GCP_PROJECT, GCP_LOCATION, googleAuthCredentials } from "./google-cloud"
 
 const EMBEDDING_MODEL = process.env.EMBEDDING_MODEL || "gemini-embedding-001"
 const DIMENSIONS = 768
@@ -10,6 +11,17 @@ const pinecone = new Pinecone({
 })
 
 const index = pinecone.index(process.env.PINECONE_INDEX_NAME!)
+
+// Embeddings via Vertex AI (Google Cloud billing), same model + dimensions
+// as before so existing Pinecone vectors stay compatible.
+const genai = new GoogleGenAI({
+  vertexai: true,
+  project: GCP_PROJECT,
+  location: GCP_LOCATION,
+  googleAuthOptions: {
+    credentials: googleAuthCredentials,
+  },
+})
 
 export async function findRelevantChunks(text: string): Promise<string> {
   const embedding = await generateEmbedding(text)
@@ -28,9 +40,6 @@ export async function findRelevantChunks(text: string): Promise<string> {
 
 export async function generateEmbedding(text: string): Promise<number[]> {
   try {
-    const genai = new GoogleGenAI({
-      apiKey: process.env.GOOGLE_GENERATIVE_AI_API_KEY!,
-    })
     const response = await genai.models.embedContent({
       model: EMBEDDING_MODEL,
       contents: [text],

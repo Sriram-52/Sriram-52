@@ -2,14 +2,14 @@ import { convertToModelMessages, streamText, UIMessage } from "ai"
 import { NextRequest } from "next/server"
 import { SYSTEM_PROMPT } from "@/lib/bot/prompt"
 import { findRelevantChunks } from "@/lib/bot/embeddings"
-import { google } from "@ai-sdk/google"
+import { vertex } from "@/lib/bot/vertex"
 import { saveChatHistoryToDb } from "@/lib/bot/messages"
 import { after } from "next/server"
 import { checkRatelimit } from "@/lib/rate-limit"
 
 export const maxDuration = 30
 
-const MODEL_NAME = process.env.MODEL_NAME || "gemini-2.0-flash"
+const MODEL_NAME = process.env.MODEL_NAME || "gemini-2.5-flash"
 
 export async function POST(req: NextRequest) {
   try {
@@ -37,11 +37,21 @@ export async function POST(req: NextRequest) {
       new Date().toISOString(),
     )
 
-    // Generate response using Gemini
+    // Generate response using Gemini on Vertex AI.
+    // Disable "thinking" — Gemini 2.5 models reason before responding by
+    // default, which adds several seconds of latency. For this RAG Q&A the
+    // answer comes straight from retrieved context, so thinking isn't needed.
     const result = streamText({
-      model: google(MODEL_NAME),
+      model: vertex(MODEL_NAME),
       system: systemPrompt,
       messages: convertToModelMessages(messages),
+      providerOptions: {
+        google: {
+          thinkingConfig: {
+            thinkingBudget: 0,
+          },
+        },
+      },
     })
 
     return result.toUIMessageStreamResponse({

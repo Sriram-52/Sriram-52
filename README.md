@@ -20,7 +20,9 @@ Lead engineer on a HIPAA-compliant clinical platform: I built a **live ambient s
 | **[Penny](https://github.com/Sriram-52/penny)** | Log expenses like writing a note; AI turns them into structured data |
 
 **Stack:** TypeScript · Node.js · NestJS · React · Next.js · React Native · PostgreSQL · Docker · Kubernetes · Serverless · Terraform/OpenTofu
+
 **Cloud:** Google Cloud · AWS · Firebase · Vercel
+
 **AI:** agents and tool calling · LangGraph · RAG · embeddings · pgvector · Vertex AI · Claude Agent SDK
 
 🌐 **[codebyram.dev](https://www.codebyram.dev)** (ask my AI assistant anything about my work) · 💼 **[LinkedIn](https://www.linkedin.com/in/sriram-nyshadham/)**
